@@ -2,11 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "struct_data.h"
+#include "lecture_csv.h"
 
-int MAX_LIGNE_E = 100;
-int MAX_COL_E = 2;
-int MAX_VOTES_E = 50;
-int nb_votants = 0;
 
 void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES_E]) {
     FILE *fichier;
@@ -54,7 +51,6 @@ void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES
         }
         ligne_count++;
     }
-    nb_votants = ligne_count;
     fclose(fichier);
 
 }
@@ -100,39 +96,28 @@ void lireFichierCSV_electeur(const char* nomFichier, electeur *electeurs[MAX_VOT
         }
         ligne_count++;
     }
-    nb_votants = ligne_count;
     fclose(fichier);
 }
 
-void lireFichierCSV(char* fichierElecteur, char* fichierVotesElecteurs){
 
+void lireFichierCSV(const char* fichierVotesElecteurs,voteElecteur *v_elect[MAX_VOTES_E]){
     // INITIALISATION DES STRUCTURES
-    voteElecteur *v_elect[MAX_VOTES_E];
     lireFichierCSV_vote(fichierVotesElecteurs, v_elect);
-    electeur *elect[MAX_VOTES_E];
-    lireFichierCSV_electeur(fichierElecteur, elect);
+}
 
+/*
+int main(){
+    voteElecteur *v_elect[MAX_VOTES_E];
+    lireFichierCSV("../data/VoteCondorcet.csv",v_elect);
 
-    // ELECTEUR AFFICHAGE TEST
-    
-    for (int i = 0; i < nb_votants - 1 ; i++) {
-        printf("Ligne : %d , Numéro de l'électeur : %d, Clef : %s à voté le %s, cours : %s, hash : %s, les réponses suivantes : \n",i+1 ,elect[i]->num_electeur, elect[i]->clef,v_elect[i]->date,v_elect[i]->cours,v_elect[i]->hash);
+    for (int i = 0; i < MAX_VOTES_E-1; i++)
+    {
         for (int x = 0; x < 10; x++)
         {
-            printf("Vote %d : %d\n", x ,v_elect[i]->votes_electeur[x]);
+            printf("%d,\n",v_elect[i]->votes_electeur[x]);
         }
+        
     }
     
-    
 }
-
-int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        perror("Utilisation : lecture_csv <fichierE.csv> <fichierV.csv>");
-        return 1;
-    }
-
-    lireFichierCSV(argv[1], argv[2]);
-
-    return 0;
-}
+*/
