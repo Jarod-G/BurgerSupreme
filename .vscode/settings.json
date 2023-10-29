@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "lecture_csv.h": "c",
+        "struct_data.h": "c"
     }
 }

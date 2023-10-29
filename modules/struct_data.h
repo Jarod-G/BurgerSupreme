@@ -1,3 +1,12 @@
+/**
+ * @file lecture_csv.c
+ * @author Gineste Jarod
+ * @brief header file with data structures used in REV
+ * @version 0.1
+ * @date 2023-10-28
+ * 
+ */
+
 #ifndef STRUCT_DATA_H
 #define STRUCT_DATA_H
 
