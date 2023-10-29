@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['voteelecteur_0',['voteElecteur',['../structvoteElecteur.html',1,'']]]
+  ['nbelecteurs_0',['nbElecteurs',['../structnbElecteurs.html',1,'']]]
 ];

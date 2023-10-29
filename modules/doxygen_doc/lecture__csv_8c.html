@@ -85,13 +85,10 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a568c497375f47c1947059c5663997997"><td class="memItemLeft" align="right" valign="top"><a id="a568c497375f47c1947059c5663997997" name="a568c497375f47c1947059c5663997997"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>lireFichierCSV_vote</b> (const char *nomFichier, <a class="el" href="structvoteElecteur.html">voteElecteur</a> *v_elect[MAX_VOTES_E])</td></tr>
-<tr class="separator:a568c497375f47c1947059c5663997997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a768ca5cd9f1d3e9d10381ccd70f7697a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8c.html#a768ca5cd9f1d3e9d10381ccd70f7697a">lireFichierCSV_electeur</a> (const char *nomFichier, <a class="el" href="structelecteur.html">electeur</a> *electeurs[MAX_VOTES_E])</td></tr>
-<tr class="separator:a768ca5cd9f1d3e9d10381ccd70f7697a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad20cc0ac7e0acd42074d0feffc64f76d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8c.html#ad20cc0ac7e0acd42074d0feffc64f76d">lireFichierCSV</a> (const char *fichierVotesElecteurs, <a class="el" href="structvoteElecteur.html">voteElecteur</a> *v_elect[MAX_VOTES_E])</td></tr>
-<tr class="separator:ad20cc0ac7e0acd42074d0feffc64f76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75af2b2256b654aae725554bd405995e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8c.html#a75af2b2256b654aae725554bd405995e">lireFichierCSV_vote</a> (const char *nomFichier, <a class="el" href="structvoteElecteur.html">voteElecteur</a> *v_elect[MAX_VOTES_E], <a class="el" href="structnbElecteurs.html">nbElecteurs</a> *nb_elect)</td></tr>
+<tr class="separator:a75af2b2256b654aae725554bd405995e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb45eb0324f8854d2824427675c9010"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8c.html#aecb45eb0324f8854d2824427675c9010">lireFichierCSV_electeur</a> (const char *nomFichier, <a class="el" href="structelecteur.html">electeur</a> *electeurs[MAX_VOTES_E], <a class="el" href="structnbElecteurs.html">nbElecteurs</a> *nb_elect)</td></tr>
+<tr class="separator:aecb45eb0324f8854d2824427675c9010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>this function read a csv file and put the data from it in a <a class="el" href="structvoteElecteur.html">voteElecteur</a> struct </p>
@@ -100,44 +97,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>lireFichierCSV_vote</
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-10-28 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ad20cc0ac7e0acd42074d0feffc64f76d" name="ad20cc0ac7e0acd42074d0feffc64f76d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad20cc0ac7e0acd42074d0feffc64f76d">&#9670;&#160;</a></span>lireFichierCSV()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void lireFichierCSV </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>fichierVotesElecteurs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structvoteElecteur.html">voteElecteur</a> *&#160;</td>
-          <td class="paramname"><em>v_elect</em>[MAX_VOTES_E]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>This function get all the data from a "vote" csv file and put it in the struct</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">fichier</td><td>VotesElecteurs Path of the csv file </td></tr>
-    <tr><td class="paramname">v_elect</td><td>From <a class="el" href="struct__data_8h_source.html">struct_data.h</a></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a768ca5cd9f1d3e9d10381ccd70f7697a" name="a768ca5cd9f1d3e9d10381ccd70f7697a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a768ca5cd9f1d3e9d10381ccd70f7697a">&#9670;&#160;</a></span>lireFichierCSV_electeur()</h2>
+<a id="aecb45eb0324f8854d2824427675c9010" name="aecb45eb0324f8854d2824427675c9010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb45eb0324f8854d2824427675c9010">&#9670;&#160;</a></span>lireFichierCSV_electeur()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,7 +113,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>lireFichierCSV_vote</
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structelecteur.html">electeur</a> *&#160;</td>
-          <td class="paramname"><em>electeurs</em>[MAX_VOTES_E]&#160;</td>
+          <td class="paramname"><em>electeurs</em>[MAX_VOTES_E], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnbElecteurs.html">nbElecteurs</a> *&#160;</td>
+          <td class="paramname"><em>nb_elect</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -166,6 +133,48 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>lireFichierCSV_vote</
   <table class="params">
     <tr><td class="paramname">nomFichier</td><td>Path of the csv file </td></tr>
     <tr><td class="paramname">electeurs</td><td>From <a class="el" href="struct__data_8h_source.html">struct_data.h</a></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a75af2b2256b654aae725554bd405995e" name="a75af2b2256b654aae725554bd405995e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75af2b2256b654aae725554bd405995e">&#9670;&#160;</a></span>lireFichierCSV_vote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lireFichierCSV_vote </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>nomFichier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structvoteElecteur.html">voteElecteur</a> *&#160;</td>
+          <td class="paramname"><em>v_elect</em>[MAX_VOTES_E], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnbElecteurs.html">nbElecteurs</a> *&#160;</td>
+          <td class="paramname"><em>nb_elect</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function get all the data from a "vote" csv file and put it in the struct</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fichier</td><td>VotesElecteurs Path of the csv file </td></tr>
+    <tr><td class="paramname">v_elect</td><td>From <a class="el" href="struct__data_8h_source.html">struct_data.h</a></td></tr>
   </table>
   </dd>
 </dl>

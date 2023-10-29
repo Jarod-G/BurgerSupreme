@@ -24,4 +24,8 @@ typedef struct {
     int num_electeur;
 }electeur;
 
+typedef struct {
+    int nb_electeur;
+}nbElecteurs;
+
 #endif // STRUCT_DATA_H

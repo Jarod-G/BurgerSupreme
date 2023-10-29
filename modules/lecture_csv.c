@@ -14,7 +14,13 @@
 #include "lecture_csv.h"
 
 
-void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES_E]) {
+void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES_E],nbElecteurs* nb_elect) {
+    /**
+    * @brief This function get all the data from a "vote" csv file and put it in the struct
+    * 
+    * @param fichier VotesElecteurs Path of the csv file
+    * @param v_elect From struct_data.h
+    */
     FILE *fichier;
     int ligne_count = 0;
     char buffer[1000];
@@ -60,6 +66,7 @@ void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES
         }
         ligne_count++;
     }
+    nb_elect->nb_electeur = ligne_count;
     fclose(fichier);
 
 }
@@ -67,7 +74,7 @@ void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES
 
 
 
-void lireFichierCSV_electeur(const char* nomFichier, electeur *electeurs[MAX_VOTES_E]) {
+void lireFichierCSV_electeur(const char* nomFichier, electeur* electeurs[MAX_VOTES_E],nbElecteurs* nb_elect) {
     /**
     * @brief This function get all the etu_num and key from a codeNumEtu csv file and put it in the struct
     * 
@@ -111,17 +118,6 @@ void lireFichierCSV_electeur(const char* nomFichier, electeur *electeurs[MAX_VOT
         }
         ligne_count++;
     }
+    nb_elect->nb_electeur = ligne_count;
     fclose(fichier);
-}
-
-
-void lireFichierCSV(const char* fichierVotesElecteurs,voteElecteur *v_elect[MAX_VOTES_E]){
-    /**
-    * @brief This function get all the data from a "vote" csv file and put it in the struct
-    * 
-    * @param fichier VotesElecteurs Path of the csv file
-    * @param v_elect From struct_data.h
-    */
-    // INITIALISATION DES STRUCTURES
-    lireFichierCSV_vote(fichierVotesElecteurs, v_elect);
 }

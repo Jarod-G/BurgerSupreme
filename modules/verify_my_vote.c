@@ -42,11 +42,11 @@ void calcule_hash(char* nom, char* prenom, char* clef,char* hashRes){
 }
 
 
-void send_my_vote(char* fichierBallots,voteElecteur* v_elect[MAX_VOTES_E], char* hashRes, int* votes){
-    lireFichierCSV_vote(fichierBallots,v_elect);
-    int find = 0;
+int send_my_vote(char* fichierBallots,voteElecteur* v_elect[MAX_VOTES_E], char* hashRes, int* votes,nbElecteurs* nb_elect){
+    lireFichierCSV_vote(fichierBallots,v_elect,nb_elect);
+
     int i = 0;
-    while(!find || i == MAX_VOTES_E - 1)
+    while( i < nb_elect->nb_electeur)
     {
         if(strcmp(v_elect[i]->hash, hashRes) == 0){
             for (int x = 0; x < 10; x++)
@@ -54,10 +54,12 @@ void send_my_vote(char* fichierBallots,voteElecteur* v_elect[MAX_VOTES_E], char*
                 indiceElecteur = i;
                 votes[x] = v_elect[i]->votes_electeur[x];
             }
-            find = 1; // HASH TROUVE
+            
+            return 3; // Electeur trouve
         }
         i++;
     }
+    return 0; // Electeur non trouve
 }
 
 
@@ -77,8 +79,18 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
     voteElecteur *v_elect[MAX_VOTES_E];
+    nbElecteurs nb_elect;
+
+    int bufferSize = SHA256_BLOCK_SIZE;
+    int votes_electeur[10];
+    int electeurFound = 0;
 
     char* nom = argv[1];
+    char* prenom = argv[2];
+    char* clef = argv[3];
+    char* fichierBallots = argv[4];
+    char hashRes[bufferSize*2 + 1]; // contiendra le hash en hexadécimal
+
     // Verification du nom en majuscule
     for (int i = 0; nom[i] != '\0'; i++)
     {
@@ -88,29 +100,26 @@ int main(int argc, char* argv[]) {
         }
     }
     
-
-    char* prenom = argv[2];
     // Verification de la 1ere lettre du prenom en majuscule
     if(!isupper(prenom[0])){
         perror("Premiere lettre du prenom n'est pas en majuscule");
         exit(3);
     }
 
-    char* clef = argv[3];
-    char* fichierBallots = argv[4];
-    int bufferSize = SHA256_BLOCK_SIZE;
-    char hashRes[bufferSize*2 + 1]; // contiendra le hash en hexadécimal
     calcule_hash(nom,prenom,clef,hashRes);
+    electeurFound = send_my_vote(fichierBallots,v_elect,hashRes,votes_electeur,&nb_elect);
 
-    int votes_electeur[10];
-    send_my_vote(fichierBallots,v_elect,hashRes,votes_electeur);
 
-    printf("\nVous avez voté le %s les choix suivants :\n |", v_elect[indiceElecteur]->date);
-    for (int i = 0; i < 10; i++)
-    {
-        printf(" %d |", votes_electeur[i]);
+    if(electeurFound){
+        printf("\nVous avez voté le %s les choix suivants :\n |", v_elect[indiceElecteur]->date);
+        for (int i = 0; i < 10; i++)
+        {
+            printf(" %d |", votes_electeur[i]);
+        }
+        printf("\n\n");
+    }else{
+        printf("Electeur non trouvé, vérifier vos informations.\n");
     }
-    printf("\n\n");
 
     return 0;
 }
