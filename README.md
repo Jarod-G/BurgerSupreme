@@ -4,7 +4,7 @@ Projet : Procédures de vote dans la République Expérimentale Virtuelle - Proj
 
 *COMMENT UTILISER VERIFY_MY_VOTE* :
 
-Usage : ./verify_my_vote <nom> <Prenom> <code_secret> <fichier_de_vote>
+Usage : ./verify_my_vote [nom] [Prenom] [code_secret] [fichier_de_vote]
 
 - nom : Nom electeur en majuscule, ex : DUPONT
 - prenom : Prenom de l'electeur avec la 1ere lettre en majuscule, ex : Pierre
