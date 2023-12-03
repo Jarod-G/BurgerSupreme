@@ -77,7 +77,7 @@ void ensembleSchwartz(int **duelsMatrice, int schwartzSet[NB_CANDIDAT]) {
 }
 
 void condorcetSchulzeSchwartz(int **duelsMatrice) {
-    int *schwartzSet = (int*) malloc(NB_DUELS * sizeof(int));
+    int *schwartzSet = malloc(NB_DUELS * sizeof(int));
 
     // Initialisez le tableau avec des 1
     for (int i = 0; i < NB_DUELS; i++) {

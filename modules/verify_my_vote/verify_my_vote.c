@@ -80,8 +80,8 @@ int main(int argc, char* argv[]) {
         perror("Usage: verify_my_vote <Nom en majuscule> <Prenom> <ClefSecrete> <FichierDeVote>");
         exit(1);
     }
-    voteElecteur **v_elect = (voteElecteur **) malloc(MAX_VOTES_E * sizeof(voteElecteur));
-    nbElecteurs *nb_elect = (nbElecteurs *) malloc(sizeof(nbElecteurs));
+    voteElecteur **v_elect = malloc(MAX_VOTES_E * sizeof(voteElecteur));
+    nbElecteurs *nb_elect = malloc(sizeof(nbElecteurs));
 
     int bufferSize = SHA256_BLOCK_SIZE;
     int votes_electeur[10];

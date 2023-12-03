@@ -14,7 +14,7 @@
 #include "lecture_csv.h"
 
 
-void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES_E],nbElecteurs* nb_elect) {
+void lireFichierCSV_vote(const char *nomFichier, voteElecteur **v_elect,nbElecteurs* nb_elect) {
     /**
     * @brief This function get all the data from a "vote" csv file and put it in the struct
     * 
@@ -74,7 +74,7 @@ void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES
 
 
 
-void lireFichierCSV_electeur(const char* nomFichier, electeur* electeurs[MAX_VOTES_E],nbElecteurs* nb_elect) {
+void lireFichierCSV_electeur(const char* nomFichier, electeur **electeurs,nbElecteurs* nb_elect) {
     /**
     * @brief This function get all the etu_num and key from a codeNumEtu csv file and put it in the struct
     * 

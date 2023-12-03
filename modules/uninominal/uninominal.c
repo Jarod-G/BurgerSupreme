@@ -7,8 +7,7 @@
  * @date 2022-11-18
  */
 
-#include "../utils/lecture_csv.h"
-#include "../utils/lecture_csv.c"
+
 #include "../utils/struct_data.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,19 +15,19 @@
 
 
 int *resultatPremierTour(voteElecteur *voteElecteur[], int nbCandidat,int nbElecteur) {
-    /**
-    * @brief This function gives the results of the first round in a tab 
-    * 
-    * @param voteElecteur from struct_data.h
-    * @param nbCandidat nombre de candidat à l'election
-    * @param nbElecteur nombre d' electeur à l'election
-    * @return int* tableau de taille nbCandidat qui contient le nombre de vote pour chaque candidat
-    */
-  int *resultat = (int *)malloc(nbCandidat * sizeof(int));
-  int moyenne = 0;
+  /**
+  * @brief This function gives the results of the first round in a tab 
+  * 
+  * @param voteElecteur from struct_data.h
+  * @param nbCandidat nombre de candidat à l'election
+  * @param nbElecteur nombre d' electeur à l'election
+  * @return int* tableau de taille nbCandidat qui contient le nombre de vote pour chaque candidat
+  */
+  int *resultat = malloc(nbCandidat * sizeof(int));
+
   // Initialiser le tableau resultat à zéro
   for (int i = 0; i < nbCandidat; i++) {
-      resultat[i] = 0;
+    resultat[i] = 0;
   }
   for (int i = 0; i < nbElecteur; i++) {//pour chaque electeur
     for (int j = 0; j < nbCandidat; j++) {
@@ -60,12 +59,12 @@ int *resultatSecondTour(voteElecteur *voteElecteur[], int posPremier, int posDeu
     }
   }
   if (resultat[0] > resultat[1]) {
-    int *res = (int *)malloc(2 * sizeof(int));
+    int *res = malloc(2 * sizeof(int));
     res[0] = posPremier;
     res[1] = resultat[0];
     return res;
   } else {
-    int *res = (int *)malloc(2 * sizeof(int));
+    int *res = malloc(2 * sizeof(int));
     res[0] = posDeuxieme;
     res[1] = resultat[1];
     return res;

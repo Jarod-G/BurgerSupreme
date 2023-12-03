@@ -34,17 +34,17 @@ void afficherBarreDeChargement(int pourcentage) {
 
 
 int main(int argc, char* argv[]) {
-    voteElecteur **v_elect = (voteElecteur **) malloc(MAX_VOTES_E * sizeof(voteElecteur));
-    nbElecteurs *nb_elect = (nbElecteurs *) malloc(sizeof(nbElecteurs));
+    voteElecteur **v_elect = malloc(MAX_VOTES_E * sizeof(voteElecteur));
+    nbElecteurs *nb_elect = malloc(sizeof(nbElecteurs));
 
     char* fichierBallots = "/home/jarod/Documents/projet/BurgerSupreme/data/VoteCondorcet.csv";
 
     lireFichierCSV_vote(fichierBallots, v_elect, nb_elect);
 
     // Allouez de la mémoire pour la matrice dynamique
-    int **matriceDynamique = (int **)malloc(NB_CANDIDAT * sizeof(int *));
+    int **matriceDynamique = malloc(NB_CANDIDAT * sizeof(int *));
     for (int i = 0; i < NB_CANDIDAT; i++) {
-        matriceDynamique[i] = (int *)malloc(NB_DUELS * sizeof(int));
+        matriceDynamique[i] = malloc(NB_DUELS * sizeof(int));
     }
 
     // Initialisez la matrice avec des valeurs
@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
 
     duelsCalculs(v_elect, nb_elect->nb_electeur, matriceDynamique);
 
-    printf("\nRecherche d'un gagnant :\n");
+    printf("\nRecherche d'un gagnant avec les différentes méthodes de condorcet :\n");
     int i;
     for (i = 0; i <= 100; i++) {
         afficherBarreDeChargement(i);

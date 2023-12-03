@@ -1,4 +1,5 @@
 #include "../utils/lecture_csv.h"
+#include "../utils/lecture_csv.c"
 #include "../utils/struct_data.h"
 #include "uninominal.c"
 #include <stdio.h>
@@ -11,8 +12,8 @@ int main(int argc, char* argv[]) {
         printf("Usage: %s <1/2 tours> <FichierDeVote>",argv[0]);
         exit(1);
     }
-    voteElecteur **v_elect = (voteElecteur **) malloc(MAX_VOTES_E * sizeof(voteElecteur));
-    nbElecteurs *nb_elect = (nbElecteurs *) malloc(sizeof(nbElecteurs));
+    voteElecteur **v_elect = malloc(MAX_VOTES_E * sizeof(voteElecteur));
+    nbElecteurs *nb_elect = malloc(sizeof(nbElecteurs));
 
     int typeUninominal = atoi(argv[1]);
     char* fichierBallots = argv[2];
