@@ -123,5 +123,8 @@ int main(int argc, char* argv[]) {
         printf("Electeur non trouvé, vérifier vos informations.\n");
     }
 
+    free(v_elect);
+    free(nb_elect);
+    
     return 0;
 }

@@ -11,21 +11,24 @@ int main(int argc, char* argv[]) {
         printf("Usage: %s <1/2 tours> <FichierDeVote>",argv[0]);
         exit(1);
     }
-    voteElecteur *v_elect[MAX_VOTES_E];
-    nbElecteurs nb_elect;
+    voteElecteur **v_elect = (voteElecteur **) malloc(MAX_VOTES_E * sizeof(voteElecteur));
+    nbElecteurs *nb_elect = (nbElecteurs *) malloc(sizeof(nbElecteurs));
 
     int typeUninominal = atoi(argv[1]);
     char* fichierBallots = argv[2];
 
-    lireFichierCSV_vote(fichierBallots,v_elect,&nb_elect);
+    lireFichierCSV_vote(fichierBallots, v_elect, nb_elect);
 
     if(typeUninominal == 1){
-        uninominal1tour(v_elect,NB_CANDIDAT,nb_elect.nb_electeur);
+        uninominal1tour(v_elect,NB_CANDIDAT,nb_elect->nb_electeur);
     }else if(typeUninominal == 2){
-        uninominal2tour(v_elect,NB_CANDIDAT,nb_elect.nb_electeur);
+        uninominal2tour(v_elect,NB_CANDIDAT,nb_elect->nb_electeur);
 
     }else{
         printf("Vote uninominal < 1 tour ou > 2 tours impossible.\n");
     }
+
+    free(v_elect);
+    free(nb_elect);
     return 0;
 }
