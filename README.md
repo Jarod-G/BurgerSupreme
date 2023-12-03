@@ -12,7 +12,7 @@ Usage : ./verify_my_vote [nom] [Prenom] [code_secret] [fichier_de_vote]
 - fichier_de_vote : Fichier de vote csv, ex VoteCondorcet.csv
 Plus d'informations dans doxygen_doc/index.html
 
-## COMMENT UTILISER UNINOMINAL* :
+## COMMENT UTILISER UNINOMINAL :
 
 Usage : ./mainUninominal [1/2 tours] [fichier_de_vote]
 
@@ -20,7 +20,7 @@ Usage : ./mainUninominal [1/2 tours] [fichier_de_vote]
 - fichier_de_vote : Fichier de vote csv, ex VoteCondorcet.csv
 Plus d'informations dans doxygen_doc/index.html
 
-## COMMENT UTILISER CONDORCET* :
+## COMMENT UTILISER CONDORCET :
 
 Usage : ./condorcet
 Plus d'informations dans doxygen_doc/index.html
