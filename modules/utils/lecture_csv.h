@@ -15,7 +15,7 @@
 #define MAX_VOTES_E 50
 
 
-void lireFichierCSV_vote(const char *nomFichier, voteElecteur *v_elect[MAX_VOTES_E],nbElecteurs* nb_elect);
+void lireFichierCSV_vote(const char *nomFichier, voteElecteur **v_elect,nbElecteurs* nb_elect);
 
-void lireFichierCSV_electeur(const char* nomFichier, electeur* electeurs[MAX_VOTES_E],nbElecteurs* nb_elect);
+void lireFichierCSV_electeur(const char* nomFichier, electeur **electeurs,nbElecteurs* nb_elect);
 #endif // LECTURE_CSV_H

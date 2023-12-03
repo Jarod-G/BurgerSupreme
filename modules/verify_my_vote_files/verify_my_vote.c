@@ -9,17 +9,19 @@
  * 
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "struct_data.h"
+
+#include "../utils/struct_data.h"
+#include "../utils/lecture_csv.h"
+#include "../utils/lecture_csv.c"
 #include "sha256/sha256.h"
 #include "sha256/sha256_utils.h"
 #include "sha256/sha256.c"
 #include "sha256/sha256_utils.c"
-#include "lecture_csv.c"
-#include "lecture_csv.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
+
 
 #define STRLONG 60
 int indiceElecteur = 0; // VAR GLOBAL
@@ -42,7 +44,7 @@ void calcule_hash(char* nom, char* prenom, char* clef,char* hashRes){
 }
 
 
-int send_my_vote(char* fichierBallots,voteElecteur* v_elect[MAX_VOTES_E], char* hashRes, int* votes,nbElecteurs* nb_elect){
+int send_my_vote(char* fichierBallots,voteElecteur **v_elect, char* hashRes, int* votes, nbElecteurs* nb_elect){
     lireFichierCSV_vote(fichierBallots,v_elect,nb_elect);
 
     int i = 0;
@@ -78,8 +80,8 @@ int main(int argc, char* argv[]) {
         perror("Usage: verify_my_vote <Nom en majuscule> <Prenom> <ClefSecrete> <FichierDeVote>");
         exit(1);
     }
-    voteElecteur *v_elect[MAX_VOTES_E];
-    nbElecteurs nb_elect;
+    voteElecteur **v_elect = (voteElecteur **) malloc(MAX_VOTES_E * sizeof(voteElecteur));
+    nbElecteurs *nb_elect = (nbElecteurs *) malloc(sizeof(nbElecteurs));
 
     int bufferSize = SHA256_BLOCK_SIZE;
     int votes_electeur[10];
@@ -107,7 +109,7 @@ int main(int argc, char* argv[]) {
     }
 
     calcule_hash(nom,prenom,clef,hashRes);
-    electeurFound = send_my_vote(fichierBallots,v_elect,hashRes,votes_electeur,&nb_elect);
+    electeurFound = send_my_vote(fichierBallots,v_elect,hashRes,votes_electeur,nb_elect);
 
 
     if(electeurFound){

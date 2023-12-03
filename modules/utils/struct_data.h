@@ -10,6 +10,13 @@
 #ifndef STRUCT_DATA_H
 #define STRUCT_DATA_H
 
+/*----------VAR GLOBALES----------*/
+#define NB_CANDIDAT 10 //NB BURGERS
+int NB_DUELS = NB_CANDIDAT - 1;
+const char *burgers[10] = {"Burger Black Pepper" , "Burger Sud-Ouest" , "Thai Burger" , "Veggie Burger", "Fire cracker","Roma","Crispy","Cheese Burger","Burger surprise","Country"};
+/*--------------------------------*/
+
+
 // Déclaration de la structure pour les données CSV
 typedef struct {
     int votes_electeur[10]; // 10 choix

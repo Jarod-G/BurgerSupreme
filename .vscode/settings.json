@@ -2,6 +2,8 @@
     "files.associations": {
         "stdlib.h": "c",
         "lecture_csv.h": "c",
-        "struct_data.h": "c"
+        "struct_data.h": "c",
+        "stdio.h": "c",
+        "string.h": "c"
     }
 }
