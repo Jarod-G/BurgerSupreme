@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void condorcetPaires(int **duelsMatrice) {
+void condorcetPaires(int ***duelsMatrice) {
 	int matriceArc[NB_CANDIDAT][NB_CANDIDAT];
 	
 	// Initialiser la matrice à 0
@@ -29,12 +29,13 @@ void condorcetPaires(int **duelsMatrice) {
         		int arc = duelsMatrice[i][j][0]-duelsMatrice[i][j][1];
         		// enlever également les arcs qui créé une boucle//
         		if (arc > 0){
-        			matriceArc[i],[j]= arc;
-        	 }
+        			matriceArc[i][j]= arc;
+        	 	}
+        	 }	
         }
         
         //Trouver le gagnant//
-        int candidats[nombreCandidat];
+        int candidats[NB_CANDIDAT];
         for (int i=0; i <NB_CANDIDAT; i++){
         	candidats[i] = 0;
         }
@@ -52,7 +53,7 @@ void condorcetPaires(int **duelsMatrice) {
         }
         int gagnant = 0;
         for (int i=0; i <NB_CANDIDAT; i++){
-        	if (candidat[i] =  0){
+        	if (candidats[i] =  0){
         		gagnant = i;
         		break;
         	}
