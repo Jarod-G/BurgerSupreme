@@ -10,9 +10,8 @@
  */
 
 
-#include "../utils/struct_data.h"
-#include "../utils/lecture_csv.h"
-#include "../utils/lecture_csv.c"
+#include "struct_data.h"
+#include "lecture_csv.h"
 #include "sha256/sha256.h"
 #include "sha256/sha256_utils.h"
 #include "sha256/sha256.c"
@@ -113,12 +112,12 @@ int main(int argc, char* argv[]) {
 
 
     if(electeurFound){
-        printf("\nVous avez voté le %s les choix suivants :\n |", v_elect[indiceElecteur]->date);
+        printf("\nVous avez voté le %s les choix suivants :\n\n", v_elect[indiceElecteur]->date);
         for (int i = 0; i < 10; i++)
         {
-            printf(" %d |", votes_electeur[i]);
+            printf(" %s : %d \n", burgers[i],votes_electeur[i]);
         }
-        printf("\n\n");
+        printf("\n");
     }else{
         printf("Electeur non trouvé, vérifier vos informations.\n");
     }

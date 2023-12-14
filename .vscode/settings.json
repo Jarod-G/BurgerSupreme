@@ -4,6 +4,10 @@
         "lecture_csv.h": "c",
         "struct_data.h": "c",
         "stdio.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "condorcet_utils.h": "c",
+        "condorcet_globals.h": "c",
+        "var_utils.h": "c",
+        "unistd.h": "c"
     }
 }

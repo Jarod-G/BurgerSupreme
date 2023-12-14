@@ -25,3 +25,7 @@ Plus d'informations dans doxygen_doc/index.html
 Usage : ./condorcet
 Plus d'informations dans doxygen_doc/index.html
 
+## COMMENT UTILISER JUGEMENT MAJORITAIRE
+
+Usage : ./jugement
+Plus d'informations dans doxygen_doc/index.html

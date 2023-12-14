@@ -8,7 +8,8 @@
  */
 
 
-#include "../utils/struct_data.h"
+#include "struct_data.h"
+#include "lecture_csv.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,6 +40,7 @@ int *resultatPremierTour(voteElecteur *voteElecteur[], int nbCandidat,int nbElec
   return resultat;
 }
 
+
 int *resultatSecondTour(voteElecteur *voteElecteur[], int posPremier, int posDeuxieme, int nbElecteur) {
     /**
     * @brief This function gives the results of the second round in a tab 
@@ -50,7 +52,7 @@ int *resultatSecondTour(voteElecteur *voteElecteur[], int posPremier, int posDeu
     */
   int resultat[2];
 
-  for (unsigned i = 0; i < nbElecteur; i++) {//pour chaque electeur
+  for (int i = 0; i < nbElecteur; i++) {//pour chaque electeur
     if (voteElecteur[i]->votes_electeur[posPremier] <
         voteElecteur[i]->votes_electeur[posDeuxieme]) {//on regarde si le premier candidat est mieux classe que le deuxieme afin de faire le report de voix
       resultat[0]++;//si oui le candidat 1 gagne une voix
@@ -71,6 +73,7 @@ int *resultatSecondTour(voteElecteur *voteElecteur[], int posPremier, int posDeu
   }
 }
 
+
 void uninominal1tour(voteElecteur *voteElecteur[], int nbCandidat, int nbElecteur) {
     /**
     * @brief This function gives the winner in First-past-the-post voting
@@ -89,6 +92,7 @@ void uninominal1tour(voteElecteur *voteElecteur[], int nbCandidat, int nbElecteu
   }
   printf("Le vainqueur est le %s avec %d votes soit %0.2f%%\n", burgers[posVainqueur],resultat[posVainqueur], ((float)resultat[posVainqueur]/(float)nbElecteur)*100);//on donne les resultats du premier tour
 }
+
 
 void uninominal2tour(voteElecteur *voteElecteur[], int nbCandidat, int nbElecteur) {
     /**
@@ -125,4 +129,32 @@ void uninominal2tour(voteElecteur *voteElecteur[], int nbCandidat, int nbElecteu
 
     free(res);
     free(resultat);
+}
+
+
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        printf("Usage: %s <1/2 tours> <FichierDeVote>",argv[0]);
+        exit(1);
+    }
+    voteElecteur **v_elect = malloc(MAX_VOTES_E * sizeof(voteElecteur));
+    nbElecteurs *nb_elect = malloc(sizeof(nbElecteurs));
+
+    int typeUninominal = atoi(argv[1]);
+    char* fichierBallots = argv[2];
+
+    lireFichierCSV_vote(fichierBallots, v_elect, nb_elect);
+
+    if(typeUninominal == 1){
+        uninominal1tour(v_elect,NB_CANDIDAT,nb_elect->nb_electeur);
+    }else if(typeUninominal == 2){
+        uninominal2tour(v_elect,NB_CANDIDAT,nb_elect->nb_electeur);
+
+    }else{
+        printf("Vote uninominal < 1 tour ou > 2 tours impossible.\n");
+    }
+
+    free(v_elect);
+    free(nb_elect);
+    return 0;
 }

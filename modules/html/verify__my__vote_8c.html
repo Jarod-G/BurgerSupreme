@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Burger Supreme: Référence du fichier verify_my_vote/verify_my_vote.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Burger Supreme<span id="projectnumber">&#160;1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_6e1d71dccfd543ff0e3d30dd6e14506b.html">verify_my_vote</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier verify_my_vote.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Programme permettant de récupèrer les fichiers utiles.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;../utils/struct_data.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="lecture__csv_8h_source.html">../utils/lecture_csv.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lecture__csv_8c.html">../utils/lecture_csv.c</a>&quot;</code><br />
+<code>#include &quot;sha256/sha256.h&quot;</code><br />
+<code>#include &quot;sha256/sha256_utils.h&quot;</code><br />
+<code>#include &quot;sha256/sha256.c&quot;</code><br />
+<code>#include &quot;sha256/sha256_utils.c&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aede308204703be915dc246c963914dbe"><td class="memItemLeft" align="right" valign="top"><a id="aede308204703be915dc246c963914dbe" name="aede308204703be915dc246c963914dbe"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>STRLONG</b>&#160;&#160;&#160;60</td></tr>
+<tr class="separator:aede308204703be915dc246c963914dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ad1538d098dc5c65aefd302f4dc9b705a"><td class="memItemLeft" align="right" valign="top"><a id="ad1538d098dc5c65aefd302f4dc9b705a" name="ad1538d098dc5c65aefd302f4dc9b705a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>calcule_hash</b> (char *nom, char *prenom, char *clef, char *hashRes)</td></tr>
+<tr class="separator:ad1538d098dc5c65aefd302f4dc9b705a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6652ea23311110aef0ac4a9c0ac45be4"><td class="memItemLeft" align="right" valign="top"><a id="a6652ea23311110aef0ac4a9c0ac45be4" name="a6652ea23311110aef0ac4a9c0ac45be4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>send_my_vote</b> (char *fichierBallots, <a class="el" href="structvoteElecteur.html">voteElecteur</a> **v_elect, char *hashRes, int *votes, <a class="el" href="structnbElecteurs.html">nbElecteurs</a> *nb_elect)</td></tr>
+<tr class="separator:a6652ea23311110aef0ac4a9c0ac45be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="verify__my__vote_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:abf5afafefdad0b65a596c4cb29f88b9d"><td class="memItemLeft" align="right" valign="top"><a id="abf5afafefdad0b65a596c4cb29f88b9d" name="abf5afafefdad0b65a596c4cb29f88b9d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>indiceElecteur</b> = 0</td></tr>
+<tr class="separator:abf5afafefdad0b65a596c4cb29f88b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Programme permettant de récupèrer les fichiers utiles. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Gineste Jarod </dd>
+<dd>
+Barcelo Fanny </dd>
+<dd>
+Handwerk Hippolyte </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2023-10-29 </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a0ddf1224851353fc92bfbff6f499fa97" name="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cette fonction effectue une opération.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg1</td><td>Nom en majuscule de l'electeur </td></tr>
+    <tr><td class="paramname">arg2</td><td>Prenom de l'electeur avec la 1ere lettre en majuscule </td></tr>
+    <tr><td class="paramname">arg3</td><td>Code secret de l'electeur </td></tr>
+    <tr><td class="paramname">arg4</td><td>Fichier de vote csv</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Affiche la ligne de vote correpondant à l'electeur</dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>
