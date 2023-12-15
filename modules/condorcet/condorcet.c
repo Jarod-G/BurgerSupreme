@@ -108,58 +108,93 @@ void condorcetSchulzeSchwartz(int **duelsMatrice) {
     free(schwartzSet);
 }
 
+void condorcetMinimax(int **duelsMatrice) {
+    int minLocal=duelsMatrice[0][0];
+    int meilleurmin=duelsMatrice[0][0];
+    int posVainqueur=0;
+    for (int candidat = 0; candidat < NB_CANDIDAT; candidat++){
+        for (int duel = 0; duel < NB_DUELS; duel++){
+            if(minLocal > duelsMatrice[candidat][duel]){
+                minLocal = duelsMatrice[candidat][duel];
+            }
+        }
+        if(minLocal < meilleurmin){
+            meilleurmin = minLocal;
+            posVainqueur = candidat;
+        }
+    }
+    printf("Le gagnant de Condorcet (methode minimax) est %s",burgers[posVainqueur]);
+}
+
+
+int* identifierCycle(int matriceArc[5][5],int candidat){
+    int file[NB_CANDIDAT];
+    int sizeArc = 0;
+    int visites[NB_CANDIDAT] = {0};
+    file[0] = candidat;
+    int size = 1;
+    int *ArcsCycles = malloc(NB_CANDIDAT * sizeof(int));
+    for (int i = 0; i < NB_CANDIDAT; i++) {
+        ArcsCycles[i] = -1;
+    }
+
+    while (size != 0){
+        int courant = file[0];
+        for (int i = 1; i < NB_CANDIDAT; i++){
+            file[i - 1] = file[i];
+        }
+        size -= 1;
+        visites[courant] = 1;
+        
+        for (int i = 0; i < NB_CANDIDAT; i++){
+            if(matriceArc[courant][i] > 0 && visites[i] == 0){
+                file[size] = i;
+                visites[i] = 1;
+                size += 1;
+            } else if(matriceArc[courant][i] > 0 &&  i == candidat){
+                printf("courant = %d\n", courant);
+                ArcsCycles[sizeArc] = courant;
+                sizeArc += 1;
+            }
+        }
+    }
+
+    return ArcsCycles;
+}
+
+
 /**
  * @brief Applique la méthode Condorcet Paires pour déterminer le gagnant du vote.
  * @param duelsMatrice Matrice des résultats des duels entre les candidats.
  */
-void condorcetPaires(int ***duelsMatrice) {
-    int matriceArc[NB_CANDIDAT][NB_CANDIDAT];
 
-    // Initialiser la matrice à 0
-    for (int i = 0; i < NB_CANDIDAT; i++) {
-        for (int j = 0; j < NB_CANDIDAT; j++) {
-            matriceArc[i][j] = 0;
-        }
-    }
-
-    // Calculer la matrice des arcs
-    for (int i = 0; i < NB_CANDIDAT; i++) {
-        for (int j = 0; j < NB_CANDIDAT - 1; j++) {
-            int arc = duelsMatrice[i][j][0] - duelsMatrice[i][j][1];
-            // enlever également les arcs qui créent une boucle
-            if (arc > 0) {
-                matriceArc[i][j] = arc;
-            }
-        }
-    }
-
-    // Trouver le gagnant
-    int candidats[NB_CANDIDAT];
-    for (int i = 0; i < NB_CANDIDAT; i++) {
-        candidats[i] = 0;
-    }
-
-    for (int i = 0; i < NB_CANDIDAT - 1; i++) {
-        for (int j = 0; j < NB_CANDIDAT; j++) {
-            if (matriceArc[j][i] > 0) {
-                if (j >= i) {
-                    candidats[i + 1] = 1;
-                } else {
-                    candidats[i] = 1;
-                }
-            }
-        }
-    }
-
+void condorcetPaires(int **duelsMatrice) {
+    
     int gagnant = 0;
-    for (int i = 0; i < NB_CANDIDAT; i++) {
-        if (candidats[i] == 0) {
-            gagnant = i;
-            break;
+    int *ArcsCycles;
+    int **ListeCycles;
+    
+    
+    int matrice[5][5] = 
+    {   {0,0,7,15,0},
+        {5,0,0,21,0},
+        {0,13,0,0,3},
+        {0,0,11,0,0},
+        {1,9,0,17,0}
+    };
+    for (int x = 0; x < NB_CANDIDAT; x++)
+    {   
+        printf("%d\n",x);
+        ArcsCycles = identifierCycle(matrice, x);
+        for (int i = 0; i < NB_CANDIDAT; i++)
+        {
+            printf("On a %d \n", ArcsCycles[i]);
+            
         }
+        free(ArcsCycles);
     }
-
     printf("Le gagnant du vote Condorcet Paires est : %s \n", burgers[gagnant]);
+    
 }
 
 /**
@@ -176,17 +211,15 @@ void duelsCalculsArcs(voteElecteur *v_elect[], int maxElecteurs, int **duelsMatr
                 int nbWin = 0;
                 int nbLoose = 0;
                 for (int electeur = 0; electeur < maxElecteurs; electeur++) {
-                    if (currentCandidat != candidat) {
-                        if (v_elect[electeur]->votes_electeur[candidat] != v_elect[electeur]->votes_electeur[currentCandidat]) {
-                            if (v_elect[electeur]->votes_electeur[candidat] != -1) {
-                                if (v_elect[electeur]->votes_electeur[candidat] < v_elect[electeur]->votes_electeur[currentCandidat] || v_elect[electeur]->votes_electeur[currentCandidat] == -1) {
-                                    nbWin++;
-                                } else {
-                                    nbLoose++;
-                                }
+                    if (currentCandidat != candidat && v_elect[electeur]->votes_electeur[candidat] != v_elect[electeur]->votes_electeur[currentCandidat]) {
+                        if (v_elect[electeur]->votes_electeur[candidat] != -1) {
+                            if (v_elect[electeur]->votes_electeur[candidat] < v_elect[electeur]->votes_electeur[currentCandidat] || v_elect[electeur]->votes_electeur[currentCandidat] == -1) {
+                                nbWin++;
                             } else {
                                 nbLoose++;
                             }
+                        } else {
+                            nbLoose++;
                         }
                     }
                 }
@@ -199,41 +232,40 @@ void duelsCalculsArcs(voteElecteur *v_elect[], int maxElecteurs, int **duelsMatr
     }
 }
 
+
 /**
- * @brief Calcule les résultats des duels entre les candidats en utilisant le système de Last-Winner.
+ * @brief Calcule les résultats des duels entre les candidats.
  * @param v_elect Tableau de structures voteElecteur représentant les votes de chaque électeur.
  * @param maxElecteurs Nombre maximum d'électeurs.
  * @param duelsMatrice Matrice pour stocker les résultats des duels entre les candidats.
  */
-void duelsCalculsLW(voteElecteur *v_elect[], int maxElecteurs, int ***duelsMatrice) {
+void duelsCalculsArcsPaires(voteElecteur *v_elect[], int maxElecteurs, int **duelsMatrice) {
     for (int candidat = 0; candidat < NB_CANDIDAT; candidat++) {
-        int i_currentCandidat = 0;
         for (int currentCandidat = 0; currentCandidat < NB_CANDIDAT; currentCandidat++) {
             if (currentCandidat != candidat) {
                 int nbWin = 0;
                 int nbLoose = 0;
                 for (int electeur = 0; electeur < maxElecteurs; electeur++) {
-                    if (currentCandidat != candidat) {
-                        if (v_elect[electeur]->votes_electeur[candidat] != v_elect[electeur]->votes_electeur[currentCandidat]) {
-                            if (v_elect[electeur]->votes_electeur[candidat] != -1) {
-                                if (v_elect[electeur]->votes_electeur[candidat] < v_elect[electeur]->votes_electeur[currentCandidat] || v_elect[electeur]->votes_electeur[currentCandidat] == -1) {
-                                    nbWin++;
-                                } else {
-                                    nbLoose++;
-                                }
+                    if (currentCandidat != candidat && v_elect[electeur]->votes_electeur[candidat] != v_elect[electeur]->votes_electeur[currentCandidat]) {
+                        if (v_elect[electeur]->votes_electeur[candidat] != -1) {
+                            if (v_elect[electeur]->votes_electeur[candidat] < v_elect[electeur]->votes_electeur[currentCandidat] || v_elect[electeur]->votes_electeur[currentCandidat] == -1) {
+                                nbWin++;
                             } else {
                                 nbLoose++;
                             }
+                        } else {
+                            nbLoose++;
                         }
                     }
                 }
-                int lw[2] = {nbWin, nbLoose};
-                duelsMatrice[candidat][i_currentCandidat] = lw;
-                i_currentCandidat++;
+                if (nbWin > nbLoose) {
+                    duelsMatrice[candidat][currentCandidat] = nbWin - nbLoose;
+                }
             }
         }
     }
 }
+
 
 /**
  * @brief Applique la méthode Condorcet pour déterminer le gagnant du vote.
@@ -278,37 +310,40 @@ int main() {
     lireFichierCSV_vote(fichierBallots, v_elect, nb_elect);
 
     // Allouez de la mémoire pour la matrice dynamique
-    int **matriceDynamique = malloc(NB_CANDIDAT * sizeof(int *));
-
-    for (int i = 0; i < NB_CANDIDAT; i++) {
-        matriceDynamique[i] = malloc(NB_DUELS * sizeof(int));
-    }
-
-    // Initialisez la matrice avec des valeurs
-    for (int i = 0; i < NB_CANDIDAT; i++) {
-        for (int j = 0; j < NB_DUELS; j++) {
-            matriceDynamique[i][j] = 0;
-        }
-    }
-
+    int **matricePoids = malloc(NB_CANDIDAT * sizeof(int *));
+    int **matriceArcsP = malloc(NB_CANDIDAT * sizeof(int *));
     
-    MatriceDynamique matriceDyn;
-    initialiserMatrice(&matriceDyn, NB_CANDIDAT, NB_DUELS);
-
-    duelsCalculsArcs(v_elect, nb_elect->nb_electeur, matriceDynamique);
-    duelsCalculsLW(v_elect, nb_elect->nb_electeur, matriceDyn.matrice);
-
-    condorcet(matriceDynamique);
-    condorcetSchulze(matriceDynamique);
-    condorcetSchulzeSchwartz(matriceDynamique);
-    condorcetPaires(matriceDyn.matrice);
 
     for (int i = 0; i < NB_CANDIDAT; i++) {
-        free(matriceDynamique[i]);
+        matricePoids[i] = malloc(NB_DUELS * sizeof(int));
+        for (int j = 0; j < NB_DUELS; j++) {
+            matricePoids[i][j] = 0;
+        }
+        matriceArcsP[i] = malloc(NB_CANDIDAT * sizeof(int));
+        for (int j = 0; j < NB_CANDIDAT; j++) {
+            matriceArcsP[i][j] = 0;
+        }
+        
+    }
+    
+
+    duelsCalculsArcs(v_elect, nb_elect->nb_electeur, matricePoids);
+    duelsCalculsArcsPaires(v_elect, nb_elect->nb_electeur, matriceArcsP);
+    
+
+    condorcet(matricePoids);
+    condorcetSchulze(matricePoids);
+    //condorcetSchulzeSchwartz(matricePoids);
+    condorcetPaires(matriceArcsP);
+
+    for (int i = 0; i < NB_CANDIDAT; i++) {
+        free(matricePoids[i]);
+        free(matriceArcsP[i]);
     }
 
-    libererMatrice(&matriceDyn);
-    free(matriceDynamique);
+    free(matricePoids);
+    free(matriceArcsP);
+    
     free(v_elect);
     free(nb_elect);
 

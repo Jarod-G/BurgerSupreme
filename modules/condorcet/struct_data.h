@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 /*----------------------------VARS GLOBALS----------------------------*/
-#define NB_CANDIDAT 10
+#define NB_CANDIDAT 5
 extern int NB_DUELS;  // Déclaration de la constante
 extern const char *burgers[10];  // Déclaration de la constante
 /*--------------------------------------------------------------------*/
@@ -38,15 +38,5 @@ typedef struct {
     int nb_electeur;
 }nbElecteurs;
 
-
-// Déclaration de la structure de la matrice dynamique
-typedef struct {
-    int nbCandidats;
-    int nbDuels;
-    int ***matrice;
-}MatriceDynamique;
-
-void initialiserMatrice(MatriceDynamique *matriceDyn, int nbCandidats, int nbDuels);
-void libererMatrice(MatriceDynamique *matriceDyn);
 
 #endif // STRUCT_DATA_H

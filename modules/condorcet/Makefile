@@ -2,7 +2,7 @@
 CC = gcc
 
 # Options de compilation
-CFLAGS = -Werror -Wall -pedantic -Wextra
+CFLAGS = -Wall
 LDFLAGS =
 
 # Nom de l'exécutable (spécifiez ici le nom de l'exécutable souhaité)

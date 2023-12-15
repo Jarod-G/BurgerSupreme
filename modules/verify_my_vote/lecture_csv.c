@@ -41,7 +41,8 @@ void lireFichierCSV_vote(const char *nomFichier, voteElecteur **v_elect,nbElecte
         char *token = strtok(buffer, ",");
         int col_count = 0;
         v_elect[ligne_count] = malloc(sizeof(voteElecteur)); // Allouer de la mémoire pour v_elect[ligne_count]
-        while (token != NULL && col_count < 14) {
+        char *newline = strchr(token, '\n');
+        while (token != NULL && newline==NULL) {
             switch (col_count) {
                 case 0:
                     v_elect[ligne_count]->reponse = atoi(token);
