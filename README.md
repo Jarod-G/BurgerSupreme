@@ -10,22 +10,18 @@ Usage : ./verify_my_vote [nom] [Prenom] [code_secret] [fichier_de_vote]
 - prenom : Prenom de l'electeur avec la 1ere lettre en majuscule, ex : Pierre
 - code_secret : Code secret de l'electeur
 - fichier_de_vote : Fichier de vote csv, ex VoteCondorcet.csv
-Plus d'informations dans doxygen_doc/index.html
 
-## COMMENT UTILISER UNINOMINAL :
+- Plus d'informations dans html/index.html
 
-Usage : ./mainUninominal [1/2 tours] [fichier_de_vote]
+## COMMENT UTILISER SCRUTIN :
 
-- 1/2 tours : Permet de choisir uninominal à 1 tour ou 2
-- fichier_de_vote : Fichier de vote csv, ex VoteCondorcet.csv
-Plus d'informations dans doxygen_doc/index.html
+Usage : ./scrutin -i [fichier_ballot.csv] -d<option> [fichier_ballot.csv] -o<option> [nom_fichier_log] -m [uni1,uni2,cm,cp,cs,jm,all] []
 
-## COMMENT UTILISER CONDORCET :
+- i nom de fichier csv traite le fichier cité, ex -i VoteCondorcet.csv
+- d nom de fichier csv traite le fichier cité, ex -d wiki_paires.csv
+- o (option) nom du fichier de log sinon créer automatiquement sous le nom de log.txt, ex -o fichier_log
+- m méthode précise la méthode de scrutin à utiliser, ex -m all
 
-Usage : ./condorcet
-Plus d'informations dans doxygen_doc/index.html
+- Plus d'informations dans html/index.html
 
-## COMMENT UTILISER JUGEMENT MAJORITAIRE
-
-Usage : ./jugement
-Plus d'informations dans doxygen_doc/index.html
+Author README : Gineste Jarod

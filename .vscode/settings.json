@@ -8,6 +8,8 @@
         "condorcet_utils.h": "c",
         "condorcet_globals.h": "c",
         "var_utils.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "getopt.h": "c",
+        "ctype.h": "c"
     }
 }
