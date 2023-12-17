@@ -59,7 +59,7 @@ int condorcetSchulze(int **duelsMatrice,const char* fichierLog, int NB_DUELS);
  * @param duelsMatrice Matrice des résultats des duels entre les candidats.
  * @return l'indice du gagnant Condorcet Minimax ou -1 s'il n'y a pas de gagnant.
  */
-int condorcetMinimax(int **duelsMatrice,const char* fichierLog);
+int condorcetMinimax(int **duelsMatrice, const char* fichierLog, int NB_DUELS);
 
 /**
  * @brief Trouve le gagnant Condorcet Paires à partir d'une matrice de duels.

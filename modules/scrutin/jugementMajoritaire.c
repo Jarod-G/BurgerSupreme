@@ -35,7 +35,6 @@ float * appreciationCandidat(voteElecteur **votes, int numCandidat, int nbVotant
     memset(appCandidat, 0, 2 * sizeof(float));
 
     
-
     // Compter les votes pour chaque appréciation
     for (int i = 0 ; i < nbVotants; i++) {
         if (votes[i]->votes_electeur[numCandidat] != -1) {
@@ -44,7 +43,7 @@ float * appreciationCandidat(voteElecteur **votes, int numCandidat, int nbVotant
     }
 
     fprintf(fptr, "%s - ", burgers[numCandidat]);
-    
+    printf("NB %d , %d\n",nbVotants, numCandidat);
     median = (float)nbVotants / 2;
     for (int i = 0; i < 6; i++) {
         fprintf(fptr, "%s %d voix (%.2f %%)||", nomAppreciation[i], (int)tab[i], (tab[i] / nbVotants) * 100);
@@ -79,10 +78,12 @@ const char* jugementMajoritaire(voteElecteur **votes, int nbVotants, const char 
     FILE * fptr;
     fptr = fopen(fichierLog, "a");
     
+    printf("NB %d \n",nbVotants);
+    
     fprintf(fptr, "RESULTAT JUGEMENT MAJORITAIRE : \n");
     float * candidatGagnant = appreciationCandidat(votes, 0, nbVotants, fptr);
-    
-    for (int i = 1; i < NB_CANDIDAT; i++) {
+    for (int i = 1; i < nbVotants; i++) {
+        
         candidat = appreciationCandidat(votes, i, nbVotants, fptr);
         if ((candidat[0] < candidatGagnant[0]) || (candidat[0] == candidatGagnant[0] && candidat[1] > candidatGagnant[1])) {
             candidatGagnant = candidat;

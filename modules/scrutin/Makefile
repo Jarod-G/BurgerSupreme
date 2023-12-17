@@ -1,3 +1,4 @@
+# Author : Gineste Jarod
 # Compilateur
 CC = gcc
 
@@ -5,7 +6,7 @@ CC = gcc
 CFLAGS = -Wall
 LDFLAGS =
 
-# Nom de l'exécutable (spécifiez ici le nom de l'exécutable souhaité)
+# Nom des l'exécutables
 EXECUTABLE_S = scrutin
 EXECUTABLE_T = tests
 
@@ -16,10 +17,11 @@ SOURCES = $(wildcard *.c)
 OBJECTS_S = $(filter-out tests.o, $(SOURCES:.c=.o))
 OBJECTS_T = $(filter-out scrutin.o, $(SOURCES:.c=.o))
 
-all: $(EXECUTABLE)
+all: $(EXECUTABLE_S) $(EXECUTABLE_T) cleanobj
 
 $(EXECUTABLE_S): $(OBJECTS_S)
 	@$(CC) -o $@ $^ $(LDFLAGS)
+	
 
 $(EXECUTABLE_T): $(OBJECTS_T)
 	@$(CC) -o $@ $^ $(LDFLAGS)
@@ -28,6 +30,13 @@ $(EXECUTABLE_T): $(OBJECTS_T)
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
+	rm -f $(OBJECTS_S) $(OBJECTS_T) $(EXECUTABLE_S) $(EXECUTABLE_T)
+
+# remove les .o apres avoir fais un make all
+cleanobj:
 	rm -f $(OBJECTS_S) $(OBJECTS_T)
 
-.PHONY: all clean
+deliver: $(SOURCES) $(EXECUTABLE_S) $(EXECUTABLE_T)
+	@zip deliver.zip $(SOURCES) $(EXECUTABLE_S) $(EXECUTABLE_T)
+
+.PHONY: all clean deliver

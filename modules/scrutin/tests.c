@@ -109,11 +109,11 @@ void testCondorcet(int **duelsMatrice, const char *fichierLog, int resultatAtten
 	printf("............................................\n");
 }
 
-void testCondorcetMinimax(int **duelsMatrice, const char *fichierLog, int resultatAttendu){
+void testCondorcetMinimax(int **duelsMatrice, const char *fichierLog, int resultatAttendu, int NB_DUELS){
 	printf("............................................\n");
 	printf("Début du test du vainqueur de Condorcet avec la méthode minimax\n");
 	
-	int resultat = condorcetMinimax(duelsMatrice, fichierLog);
+	int resultat = condorcetMinimax(duelsMatrice, fichierLog, NB_DUELS);
 	if(resultat == resultatAttendu ){
 		printf("Test Condorcet Minimax OK \n");
 	}
@@ -171,7 +171,8 @@ int main(){
 		    matriceArcsP[i][j] = 0;
 		}
 	}
-		
+	
+	/*------------------FICHIER BALLOTS TESTS------------------*/
 	voteElecteur **v_elect = malloc(MAX_VOTES_E * sizeof(voteElecteur));
 	nbElecteurs *nb_elect = malloc(sizeof(nbElecteurs));
 	matriceTab* matrice = malloc(sizeof(matriceTab));
@@ -197,7 +198,7 @@ int main(){
 	testCondorcet(matricePoids, fichierLog, -1);
 	printf("\n\n");
 	
-	testCondorcetMinimax(matricePoids, fichierLog, 0);
+	testCondorcetMinimax(matricePoids, fichierLog, 0, NB_CANDIDAT);
 	printf("\n\n");
 	
 	testCondorcetSchulze(matricePoids, fichierLog, NB_CANDIDAT,4);

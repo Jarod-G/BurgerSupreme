@@ -218,7 +218,6 @@ int main(int argc, char* argv[]) {
         }
         duelsCalculsArcs(v_elect, NB_VOTANTS, matricePoids);
     }
-
     
     /*
      * OUVERTURE DU FICHIER LOG EN MODE ÉCRITURE
@@ -255,7 +254,7 @@ int main(int argc, char* argv[]) {
         } else {
             printf("Il n'existe pas de vainqueur de condorcet avec la méthode de scrutin simple.\n");
         }
-        vainqueur = condorcetMinimax(matricePoids, fichierLog);
+        vainqueur = condorcetMinimax(matricePoids, fichierLog, NB_DUELS);
         printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
     }
 
@@ -289,16 +288,24 @@ int main(int argc, char* argv[]) {
         uninominal1tour(v_elect, NB_VOTANTS, fichierLog);
         uninominal2tour(v_elect, NB_VOTANTS, fichierLog);
 
+        // CONDORCET SCHULZE
         int vainqueur = condorcetSchulze(matricePoids, fichierLog, NB_DUELS);
         if (vainqueur != -1) {
             printf("Mode de scrutin : Condorcet Schulze , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         }
 
+        // MINIMAX SI IL N'EXISTE PAS DE VAINQUEUR DE CONDORCET
+        vainqueur = condorcet(matricePoids, fichierLog);
+        if(vainqueur == -1){
+            vainqueur = condorcetMinimax(matricePoids, fichierLog, NB_DUELS);
+            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+
+        }else{
+            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+        }
+
         // condorcetPaire(matricePoids);
-
-        vainqueur = condorcetMinimax(matricePoids, fichierLog);
-        printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
-
+        
         jugementMajoritaire(v_elect, NB_VOTANTS, fichierLog);
     }
 
@@ -308,12 +315,18 @@ int main(int argc, char* argv[]) {
         if (vainqueur != -1) {
             printf("Mode de scrutin : Condorcet Schulze , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         }
-        vainqueur = condorcetMinimax(matricePoids, fichierLog);
-        printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+        
+        // MINIMAX SI IL N'EXISTE PAS DE VAINQUEUR DE CONDORCET
+        vainqueur = condorcet(matricePoids, fichierLog);
+        if(vainqueur == -1){
+            vainqueur = condorcetMinimax(matricePoids, fichierLog, NB_DUELS);
+            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+        }else{
+            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+        }
     }
 
 
-    
     /*
      * LIBÉRATION DE LA MÉMOIRE ALLOUÉE
      *
@@ -334,6 +347,6 @@ int main(int argc, char* argv[]) {
 
     free(v_elect);
     free(nb_elect);
-
+    printf("\nFin d'éxecution du programme\n\n");
     return 0;
 }

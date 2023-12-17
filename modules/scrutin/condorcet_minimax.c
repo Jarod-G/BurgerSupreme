@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <limits.h>
 
 /**
  * @brief Trouve le vainqueur en utilisant la méthode Condorcet Minimax.
@@ -21,23 +22,27 @@
  * @param duelsMatrice La matrice des résultats des duels.
  * @return L'indice du vainqueur.
  */
-int condorcetMinimax(int **duelsMatrice, const char * fichierLog) {
-    int NB_DUELS = NB_CANDIDAT - 1;
-    int minLocal = duelsMatrice[0][0];
-    int meilleurmin = duelsMatrice[0][1];
+int condorcetMinimax(int **duelsMatrice, const char * fichierLog, int NB_DUELS) {
+    int minLocal = INT_MAX;
+    int meilleurmin = INT_MAX;
     int posVainqueur = 0;
-    int minEnCours=duelsMatrice[0][1];
+    int minEnCours=INT_MAX;
+
     FILE * fptr;
     fptr = fopen(fichierLog, "a");
     fprintf(fptr,"\nRESULTAT CONDORCET MINIMAX\n");
+
     // Parcours de chaque candidat
     for (int candidat = 0; candidat < NB_CANDIDAT; candidat++) {
         // Parcours de chaque duel pour un candidat donné
         for (int duel = 0; duel < NB_DUELS; duel++) {
-            if(duel==candidat)
-            minEnCours=duelsMatrice[candidat][duel];
+            // On regarde la colonne correspondant au candidat, il s'agit des duels que le candidat perd
+            if(duel!=candidat){
+                minEnCours=duelsMatrice[duel][candidat];
+            }
+            
             // Recherche du minimum local pour le candidat actuel
-            if (minLocal > minEnCours) {
+            if (minLocal > minEnCours && !minEnCours == 0) {
                 minLocal = minEnCours;
             }
         }
@@ -51,6 +56,7 @@ int condorcetMinimax(int **duelsMatrice, const char * fichierLog) {
     }
     fprintf(fptr,"\n\n");
     fclose(fptr);
+    
     // Retourne l'indice du vainqueur
     return posVainqueur;
 }
