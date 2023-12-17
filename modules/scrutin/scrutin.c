@@ -287,6 +287,7 @@ int main(int argc, char* argv[]) {
     if (methode[6] != -1 && !d_utilise) {
         uninominal1tour(v_elect, NB_VOTANTS, fichierLog);
         uninominal2tour(v_elect, NB_VOTANTS, fichierLog);
+        jugementMajoritaire(v_elect, NB_VOTANTS, fichierLog);
 
         // CONDORCET SCHULZE
         int vainqueur = condorcetSchulze(matricePoids, fichierLog, NB_DUELS);
@@ -303,10 +304,7 @@ int main(int argc, char* argv[]) {
         }else{
             printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         }
-
-        // condorcetPaire(matricePoids);
         
-        jugementMajoritaire(v_elect, NB_VOTANTS, fichierLog);
     }
 
     // Méthode de vote : Application de toutes les méthodes si -m all (applicable si -d est utilisé)

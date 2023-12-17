@@ -43,7 +43,6 @@ float * appreciationCandidat(voteElecteur **votes, int numCandidat, int nbVotant
     }
 
     fprintf(fptr, "%s - ", burgers[numCandidat]);
-    printf("NB %d , %d\n",nbVotants, numCandidat);
     median = (float)nbVotants / 2;
     for (int i = 0; i < 6; i++) {
         fprintf(fptr, "%s %d voix (%.2f %%)||", nomAppreciation[i], (int)tab[i], (tab[i] / nbVotants) * 100);
@@ -78,12 +77,10 @@ const char* jugementMajoritaire(voteElecteur **votes, int nbVotants, const char 
     FILE * fptr;
     fptr = fopen(fichierLog, "a");
     
-    printf("NB %d \n",nbVotants);
-    
     fprintf(fptr, "RESULTAT JUGEMENT MAJORITAIRE : \n");
+
     float * candidatGagnant = appreciationCandidat(votes, 0, nbVotants, fptr);
-    for (int i = 1; i < nbVotants; i++) {
-        
+    for (int i = 1; i < NB_CANDIDAT; i++) {
         candidat = appreciationCandidat(votes, i, nbVotants, fptr);
         if ((candidat[0] < candidatGagnant[0]) || (candidat[0] == candidatGagnant[0] && candidat[1] > candidatGagnant[1])) {
             candidatGagnant = candidat;
@@ -94,6 +91,8 @@ const char* jugementMajoritaire(voteElecteur **votes, int nbVotants, const char 
     fprintf(fptr, "Le gagnant est %s avec la mention %s (%.2f %%) \n\n", burgers[burgerGagnant], nomAppreciation[(int)candidatGagnant[0]], (candidatGagnant[1] / nbVotants) * 100);
     printf("Mode de scrutin : Jugement majoritaire , %d candidats, %d votants, vainqueur = %s\n",NB_CANDIDAT,nbVotants,burgers[burgerGagnant]);
     fclose(fptr);
+
     free(candidat);
+    free(candidatGagnant);
     return burgers[burgerGagnant];
 }
