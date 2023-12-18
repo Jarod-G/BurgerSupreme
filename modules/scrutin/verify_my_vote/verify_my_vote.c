@@ -123,6 +123,9 @@ int main(int argc, char* argv[]) {
         printf("Electeur non trouvé, vérifier vos informations.\n");
     }
 
+    for (int i = 0; i < MAX_VOTES_E; i++) {
+    	free(v_elect[i]);
+	}
     free(v_elect);
     free(nb_elect);
     

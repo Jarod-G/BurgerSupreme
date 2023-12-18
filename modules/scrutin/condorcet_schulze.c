@@ -2,7 +2,6 @@
  * @file condorcet_schulze.c
  * @author Gineste Jarod
  * @brief Implémentation des fonctions liées à la méthode de Condorcet Schulze.
- * @version 0.1
  * @date 2023-12-14
  */
 
@@ -73,11 +72,15 @@ int colonneAQueDesZeros(int **duelsMatrice, int NB_CANDIDAT, int opposant, int N
 /**
  * @brief Fonction principale pour trouver le gagnant avec la méthode de Schulze.
  * @param duelsMatrice Matrice des résultats des duels entre les candidats.
- * @param fichierLog Nom du fichier de journalisation.
+ * @param fichierLog Fichier de log.
  * @param NB_DUELS Nombre total de duels.
  * @return l'indice du gagnant s'il y a un gagnant de Schulze, sinon -1.
  */
 int condorcetSchulze(int **duelsMatrice, const char *fichierLog, int NB_DUELS) {
+
+    FILE * fptr;
+    fptr = fopen(fichierLog, "a");
+    fprintf(fptr,"\nCONDORCET SCHULZE\n");
     
     // Création d'une copie locale de la matrice pour éviter les modifications
     int **duelsMatriceCopy = malloc(NB_CANDIDAT * sizeof(int *));
@@ -93,6 +96,7 @@ int condorcetSchulze(int **duelsMatrice, const char *fichierLog, int NB_DUELS) {
     while (gagnant == -1) {
         int min, i_min, x_min;
         trouverMinimumNonTraite(duelsMatriceCopy, NB_DUELS, &i_min, &x_min, &min);
+        fprintf(fptr,"Minimum trouvé : ligne - %d / colonne - %d / poid arc supprimé - %d\n",i_min,x_min,min);
         marquerMinimumTraite(duelsMatriceCopy, i_min, x_min);
 
         // Vérifier s'il y a une colonne avec que des 0
@@ -108,12 +112,14 @@ int condorcetSchulze(int **duelsMatrice, const char *fichierLog, int NB_DUELS) {
             gagnant = x_min;
         }
     }
+    fprintf(fptr,"Indice du gagnant -> %d\n",gagnant);
 
     // Libération de la mémoire allouée pour la copie locale
     for (int i = 0; i < NB_CANDIDAT; i++) {
         free(duelsMatriceCopy[i]);
     }
     free(duelsMatriceCopy);
+    fclose(fptr);
 
     return gagnant;
 }

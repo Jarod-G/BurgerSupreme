@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Burger Supreme: lecture_csv.c File Reference</title>
+<title>Burger Supreme: lecture_csv.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,32 +71,44 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">lecture_csv.c File Reference</div></div>
+  <div class="headertitle"><div class="title">lecture_csv.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Fonctions de lecture de fichiers CSV pour extraire et structurer les données.  
+<p>.h du fichier <a class="el" href="lecture__csv_8c.html" title="Fonctions de lecture de fichiers CSV pour extraire et structurer les données.">lecture_csv.c</a> qui gère lecture de fichiers CSV pour extraire et structurer les données  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="lecture__csv_8h_source.html">lecture_csv.h</a>&quot;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-</div><table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="struct__data_8h_source.html">struct_data.h</a>&quot;</code><br />
+</div>
+<p><a href="lecture__csv_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ab2da6ff528f8bf7e179e9fd7a6b6f5e8"><td class="memItemLeft" align="right" valign="top"><a id="ab2da6ff528f8bf7e179e9fd7a6b6f5e8" name="ab2da6ff528f8bf7e179e9fd7a6b6f5e8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_CHAR_SIZE</b>&#160;&#160;&#160;512</td></tr>
+<tr class="separator:ab2da6ff528f8bf7e179e9fd7a6b6f5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a057aeda91b711badc44ef86a18afec8d"><td class="memItemLeft" align="right" valign="top"><a id="a057aeda91b711badc44ef86a18afec8d" name="a057aeda91b711badc44ef86a18afec8d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_VOTES_E</b>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a057aeda91b711badc44ef86a18afec8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5552aced5da62d9a56f1787c66af0da0"><td class="memItemLeft" align="right" valign="top"><a id="a5552aced5da62d9a56f1787c66af0da0" name="a5552aced5da62d9a56f1787c66af0da0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_CANDIDATS</b>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a5552aced5da62d9a56f1787c66af0da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3850f89034d4eadc59f9bcea717b0fe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8c.html#a3850f89034d4eadc59f9bcea717b0fe9">lireFichierCSV_vote</a> (const char *nomFichier, <a class="el" href="structvoteElecteur.html">voteElecteur</a> **v_elect, <a class="el" href="structnbElecteurs.html">nbElecteurs</a> *nb_elect)</td></tr>
+<tr class="memitem:a3850f89034d4eadc59f9bcea717b0fe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8h.html#a3850f89034d4eadc59f9bcea717b0fe9">lireFichierCSV_vote</a> (const char *nomFichier, <a class="el" href="structvoteElecteur.html">voteElecteur</a> **v_elect, <a class="el" href="structnbElecteurs.html">nbElecteurs</a> *nb_elect)</td></tr>
 <tr class="memdesc:a3850f89034d4eadc59f9bcea717b0fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit un fichier CSV de votes et stocke les données dans une structure <a class="el" href="structvoteElecteur.html" title="Structure représentant les données CSV d&#39;un fichier de bulletins de vote.">voteElecteur</a>.  <br /></td></tr>
 <tr class="separator:a3850f89034d4eadc59f9bcea717b0fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9477aa9b464a98aab82d6f6af4b2a42e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8c.html#a9477aa9b464a98aab82d6f6af4b2a42e">lireMatriceCSV</a> (const char *nomFichier, <a class="el" href="structmatriceTab.html">matriceTab</a> *matrice)</td></tr>
-<tr class="memdesc:a9477aa9b464a98aab82d6f6af4b2a42e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit un fichier CSV de matrice de votes et stocke les données dans une structure <a class="el" href="structmatriceTab.html" title="Structure représentant une matrice d&#39;entiers avec des noms de candidats.">matriceTab</a>.  <br /></td></tr>
-<tr class="separator:a9477aa9b464a98aab82d6f6af4b2a42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a196019dc61ac3132d1b5a1cf7b60d58c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8c.html#a196019dc61ac3132d1b5a1cf7b60d58c">lireFichierCSV_electeur</a> (const char *nomFichier, <a class="el" href="structelecteur.html">electeur</a> **electeurs, <a class="el" href="structnbElecteurs.html">nbElecteurs</a> *nb_elect)</td></tr>
+<tr class="memitem:a196019dc61ac3132d1b5a1cf7b60d58c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8h.html#a196019dc61ac3132d1b5a1cf7b60d58c">lireFichierCSV_electeur</a> (const char *nomFichier, <a class="el" href="structelecteur.html">electeur</a> **electeurs, <a class="el" href="structnbElecteurs.html">nbElecteurs</a> *nb_elect)</td></tr>
 <tr class="memdesc:a196019dc61ac3132d1b5a1cf7b60d58c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit un fichier CSV d'électeurs et stocke les données dans une structure electeur.  <br /></td></tr>
 <tr class="separator:a196019dc61ac3132d1b5a1cf7b60d58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9477aa9b464a98aab82d6f6af4b2a42e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lecture__csv_8h.html#a9477aa9b464a98aab82d6f6af4b2a42e">lireMatriceCSV</a> (const char *nomFichier, <a class="el" href="structmatriceTab.html">matriceTab</a> *matrice)</td></tr>
+<tr class="memdesc:a9477aa9b464a98aab82d6f6af4b2a42e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit un fichier CSV de matrice de votes et stocke les données dans une structure <a class="el" href="structmatriceTab.html" title="Structure représentant une matrice d&#39;entiers avec des noms de candidats.">matriceTab</a>.  <br /></td></tr>
+<tr class="separator:a9477aa9b464a98aab82d6f6af4b2a42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Fonctions de lecture de fichiers CSV pour extraire et structurer les données. </p>
+<div class="textblock"><p>.h du fichier <a class="el" href="lecture__csv_8c.html" title="Fonctions de lecture de fichiers CSV pour extraire et structurer les données.">lecture_csv.c</a> qui gère lecture de fichiers CSV pour extraire et structurer les données </p>
 <dl class="section author"><dt>Author</dt><dd>Gineste Jarod </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-10-28 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>

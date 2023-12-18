@@ -69,7 +69,7 @@ float * appreciationCandidat(voteElecteur **votes, int numCandidat, int nbVotant
  * @param votes Tableau des votes des électeurs
  * @param nbVotants Nombre total d'électeurs
  * @param nbCandidat Nombre total de candidats
- * @param fichierLog Nom du fichier de sortie
+ * @param fichierLog Fichier de log.
  */
 const char* jugementMajoritaire(voteElecteur **votes, int nbVotants, const char *fichierLog) {
     int burgerGagnant = 0;
@@ -77,8 +77,8 @@ const char* jugementMajoritaire(voteElecteur **votes, int nbVotants, const char 
     FILE * fptr;
     fptr = fopen(fichierLog, "a");
     
-    fprintf(fptr, "RESULTAT JUGEMENT MAJORITAIRE : \n");
-
+    fprintf(fptr, "\nJUGEMENT MAJORITAIRE : \n");
+    
     float * candidatGagnant = appreciationCandidat(votes, 0, nbVotants, fptr);
     for (int i = 1; i < NB_CANDIDAT; i++) {
         candidat = appreciationCandidat(votes, i, nbVotants, fptr);

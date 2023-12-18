@@ -2,9 +2,9 @@
  * @file uninominial.c
  * @author Handwerk Hippolyte
  * @author Gineste Jarod
- * @brief this function gives the winner of the uninominal election (1 or 2 round)
+ * @brief Ces fonctions donnent le gagnant de l'élection uninominal (1 ou 2 tours)
  * @version 0.1
- * @date 2022-11-18
+ * @date 2023-11-18
  */
 
 #include "uninominal.h"

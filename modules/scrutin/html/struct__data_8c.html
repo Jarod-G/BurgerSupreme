@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Burger Supreme: struct_data.h File Reference</title>
+<title>Burger Supreme: struct_data.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,50 +71,33 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
-  <div class="headertitle"><div class="title">struct_data.h File Reference</div></div>
+  <div class="headertitle"><div class="title">struct_data.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Définition de données structurées et fonctions associées.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
-</div>
-<p><a href="struct__data_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvoteElecteur.html">voteElecteur</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant les données CSV d'un fichier de bulletins de vote.  <a href="structvoteElecteur.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structelecteur.html">electeur</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant les données CSV d'un fichier d'électeurs.  <a href="structelecteur.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnbElecteurs.html">nbElecteurs</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant le nombre total d'électeurs.  <a href="structnbElecteurs.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmatriceTab.html">matriceTab</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure représentant une matrice d'entiers avec des noms de candidats.  <a href="structmatriceTab.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="struct__data_8h_source.html">struct_data.h</a>&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0a19fd1091c4ac75c4a515fa37e2f6ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__data_8h.html#a0a19fd1091c4ac75c4a515fa37e2f6ce">initialiserMatrice</a> (<a class="el" href="structmatriceTab.html">matriceTab</a> *matrice, int lignes, int colonnes)</td></tr>
+<tr class="memitem:a0a19fd1091c4ac75c4a515fa37e2f6ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__data_8c.html#a0a19fd1091c4ac75c4a515fa37e2f6ce">initialiserMatrice</a> (<a class="el" href="structmatriceTab.html">matriceTab</a> *matrice, int lignes, int colonnes)</td></tr>
 <tr class="memdesc:a0a19fd1091c4ac75c4a515fa37e2f6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise une matrice avec des zéros.  <br /></td></tr>
 <tr class="separator:a0a19fd1091c4ac75c4a515fa37e2f6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f3444f04816c1c0f007ffc79aff72db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__data_8h.html#a9f3444f04816c1c0f007ffc79aff72db">libererMatrice</a> (<a class="el" href="structmatriceTab.html">matriceTab</a> *matrice, int lignes)</td></tr>
+<tr class="memitem:a9f3444f04816c1c0f007ffc79aff72db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__data_8c.html#a9f3444f04816c1c0f007ffc79aff72db">libererMatrice</a> (<a class="el" href="structmatriceTab.html">matriceTab</a> *matrice, int lignes)</td></tr>
 <tr class="memdesc:a9f3444f04816c1c0f007ffc79aff72db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libère la mémoire allouée pour une matrice.  <br /></td></tr>
 <tr class="separator:a9f3444f04816c1c0f007ffc79aff72db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a876b5d290a04183cb97631651816ffa8"><td class="memItemLeft" align="right" valign="top"><a id="a876b5d290a04183cb97631651816ffa8" name="a876b5d290a04183cb97631651816ffa8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>NB_CANDIDAT</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>NB_CANDIDAT</b> = 10</td></tr>
 <tr class="separator:a876b5d290a04183cb97631651816ffa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3463805f583bc10a4033de27d371708e"><td class="memItemLeft" align="right" valign="top"><a id="a3463805f583bc10a4033de27d371708e" name="a3463805f583bc10a4033de27d371708e"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>burgers</b> [10]</td></tr>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>burgers</b> [10] = {&quot;Burger Black Pepper&quot;, &quot;Burger Sud-Ouest&quot;, &quot;Thai Burger&quot;, &quot;Veggie Burger&quot;, &quot;Fire cracker&quot;, &quot;Roma&quot;, &quot;Crispy&quot;, &quot;Cheese Burger&quot;, &quot;Burger surprise&quot;, &quot;Country&quot;}</td></tr>
 <tr class="separator:a3463805f583bc10a4033de27d371708e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

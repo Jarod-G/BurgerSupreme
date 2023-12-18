@@ -2,7 +2,6 @@
  * @file condorcet.c
  * @author Handwerk Hippolyte
  * @brief Implémentation des fonctions liées à la méthode de Condorcet minimax.
- * @version 0.1
  * @date 2023-12-14
  */
 
@@ -20,6 +19,8 @@
  * en fonction de la méthode Condorcet Minimax.
  *
  * @param duelsMatrice La matrice des résultats des duels.
+ * @param fichierLog Fichier de log.
+ * @param NB_DUELS Le nombre de duels.
  * @return L'indice du vainqueur.
  */
 int condorcetMinimax(int **duelsMatrice, const char * fichierLog, int NB_DUELS) {
@@ -30,7 +31,7 @@ int condorcetMinimax(int **duelsMatrice, const char * fichierLog, int NB_DUELS) 
 
     FILE * fptr;
     fptr = fopen(fichierLog, "a");
-    fprintf(fptr,"\nRESULTAT CONDORCET MINIMAX\n");
+    fprintf(fptr,"\nCONDORCET MINIMAX\n");
 
     // Parcours de chaque candidat
     for (int candidat = 0; candidat < NB_CANDIDAT; candidat++) {

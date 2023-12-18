@@ -1,10 +1,8 @@
 /**
- * @file  struct_data.h
+ * @file struct_data.h
  * @author Gineste Jarod
  * @brief Définition de données structurées et fonctions associées
- * @version 0.1
- * @date 2023-10-28
- * 
+ * @date 2023-11-28
  */
 
 #ifndef STRUCT_DATA_H

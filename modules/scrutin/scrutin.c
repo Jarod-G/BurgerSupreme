@@ -1,9 +1,10 @@
 /**
  * @file scrutin.c
- * @authors Handwerk Hippolyte, Jarod Gineste
+ * @author Gineste Jarod
+ * @author Handwerk Hippolyte
  * @brief Programme principal qui exécute différentes fonctions de vote
- * @version 0.1
- * @date 2023-12-14
+ * @version 0.2
+ * @date 2023-12-18
  */
 
 #include <stdio.h>
@@ -163,6 +164,8 @@ int main(int argc, char* argv[]) {
     voteElecteur** v_elect = malloc(MAX_VOTES_E * sizeof(voteElecteur));
     nbElecteurs* nb_elect = malloc(sizeof(nbElecteurs));
     matriceTab* matrice = malloc(sizeof(matriceTab));
+    matriceTab* matricePaires = malloc(sizeof(matriceTab));
+    matriceTab* matricePoids = malloc(sizeof(matriceTab));
     int NB_VOTANTS = 0;
     int NB_DUELS = 0;
 
@@ -184,15 +187,7 @@ int main(int argc, char* argv[]) {
         NB_DUELS = NB_CANDIDAT - 1;
     }
 
-
-    /*
-     * ALLOCATION DE MÉMOIRE POUR LA MATRICE DE POIDS
-     *
-     * Cette section alloue de la mémoire pour la matrice de poids utilisée dans les
-     * calculs des duels et des poids d'arcs pour différentes méthodes de vote.
-     */
-    int** matricePoids = malloc(NB_CANDIDAT * sizeof(int*));
-
+    
     /*
      * CALCUL DES DUELS ET DES POIDS D'ARCS EN FONCTION DES OPTIONS -i OU -d
      *
@@ -201,23 +196,25 @@ int main(int argc, char* argv[]) {
      */
     if (d_utilise) {
         // CAS -d : Allocation de mémoire et calcul des duels et des poids d'arcs
-        for (int i = 0; i < NB_CANDIDAT; i++) {
-            matricePoids[i] = malloc(NB_CANDIDAT * sizeof(int));
-            for (int j = 0; j < NB_CANDIDAT; j++) {
-                matricePoids[i][j] = 0;
-            }
-        }
-        duelsCalculsArcsMatrice(matrice->tab, NB_VOTANTS, matricePoids);
+        initialiserMatrice(matricePoids, NB_CANDIDAT, NB_CANDIDAT);
+        duelsCalculsArcsMatrice(matrice->tab, NB_VOTANTS, matricePoids->tab);
     } else {
         // CAS -i : Allocation de mémoire et calcul des duels et des poids d'arcs
-        for (int i = 0; i < NB_CANDIDAT; i++) {
-            matricePoids[i] = malloc(NB_DUELS * sizeof(int));
-            for (int j = 0; j < NB_DUELS; j++) {
-                matricePoids[i][j] = 0;
+        
+        initialiserMatrice(matricePaires, NB_VOTANTS, NB_CANDIDAT);
+        initialiserMatrice(matricePoids, NB_CANDIDAT, NB_DUELS);
+        duelsCalculsArcs(v_elect, NB_VOTANTS, matricePoids->tab);
+
+        // INIT MATRICE DES DONNEES DE V_ELECT VERS INT ** POUR CONDORCET PAIRES
+        for (int i = 0; i < NB_VOTANTS; i++)
+        {
+            for (int x = 0; x < NB_CANDIDAT; x++)
+            {
+                matricePaires->tab[i][x] = v_elect[i]->votes_electeur[x];
             }
         }
-        duelsCalculsArcs(v_elect, NB_VOTANTS, matricePoids);
     }
+
     
     /*
      * OUVERTURE DU FICHIER LOG EN MODE ÉCRITURE
@@ -239,40 +236,54 @@ int main(int argc, char* argv[]) {
     // Méthode de vote : Uninominal 1 tour
     if (methode[0] != -1 && !d_utilise) {
         uninominal1tour(v_elect, NB_VOTANTS, fichierLog);
+    }else if(methode[0] != -1 && d_utilise){
+        printf("L'option -d interdit l'utilisation de uni1\n");
     }
 
     // Méthode de vote : Uninominal 2 tours
-    if (methode[1] != -1 && ! d_utilise) {
+    if (methode[1] != -1 && !d_utilise) {
         uninominal2tour(v_elect, NB_VOTANTS, fichierLog);
+    }else if(methode[1] != -1 && d_utilise){
+        printf("L'option -d interdit l'utilisation de uni2\n");
     }
 
     // Méthode de vote : Condorcet avec Minimax
     if (methode[2] != -1) {
-        int vainqueur = condorcet(matricePoids, fichierLog);
+        int vainqueur = condorcet(matricePoids->tab, fichierLog);
         if (vainqueur != -1) {
             printf("Mode de scrutin : Condorcet , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         } else {
             printf("Il n'existe pas de vainqueur de condorcet avec la méthode de scrutin simple.\n");
         }
-        vainqueur = condorcetMinimax(matricePoids, fichierLog, NB_DUELS);
+        vainqueur = condorcetMinimax(matricePoids->tab, fichierLog, NB_DUELS);
         printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
     }
 
     // Méthode de vote : Condorcet Paires(en cours de développement)
     if (methode[3] != -1) {
-        printf("En cours de développement...\n");
-        // condorcetPaire(matricePoids);
-    }
-
-    // Méthode de vote : Condorcet avec Schulze
-    if (methode[4] != -1) {
-        int vainqueur = condorcet(matricePoids, fichierLog);
+        int vainqueur = condorcet(matricePoids->tab, fichierLog);
         if (vainqueur != -1) {
             printf("Mode de scrutin : Condorcet , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         } else {
             printf("Il n'existe pas de vainqueur de condorcet avec la méthode de scrutin simple.\n");
         }
-        vainqueur = condorcetSchulze(matricePoids, fichierLog, NB_DUELS);
+
+        if(d_utilise){
+            printf("Mode de scrutin : Condorcet Paires , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[condorcetPaires(matrice->tab,fichierLog)]);
+        }else{
+            printf("Mode de scrutin : Condorcet Paires , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[condorcetPaires(matricePaires->tab,fichierLog)]);
+        }
+    }
+
+    // Méthode de vote : Condorcet avec Schulze
+    if (methode[4] != -1) {
+        int vainqueur = condorcet(matricePoids->tab, fichierLog);
+        if (vainqueur != -1) {
+            printf("Mode de scrutin : Condorcet , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+        } else {
+            printf("Il n'existe pas de vainqueur de condorcet avec la méthode de scrutin simple.\n");
+        }
+        vainqueur = condorcetSchulze(matricePoids->tab, fichierLog, NB_DUELS);
         if (vainqueur != -1) {
             printf("Mode de scrutin : Condorcet Schulze , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         }
@@ -281,6 +292,8 @@ int main(int argc, char* argv[]) {
     // Méthode de vote : Jugement Majoritaire
     if (methode[5] != -1 && !d_utilise) {
         jugementMajoritaire(v_elect, NB_VOTANTS, fichierLog);
+    }else if(methode[5] != -1 && d_utilise){
+        printf("L'option -d interdit l'utilisation de jm\n");
     }
 
     // Méthode de vote : Application de toutes les méthodes si -m all (non applicable si -d est utilisé)
@@ -290,38 +303,46 @@ int main(int argc, char* argv[]) {
         jugementMajoritaire(v_elect, NB_VOTANTS, fichierLog);
 
         // CONDORCET SCHULZE
-        int vainqueur = condorcetSchulze(matricePoids, fichierLog, NB_DUELS);
+        int vainqueur = condorcetSchulze(matricePoids->tab, fichierLog, NB_DUELS);
         if (vainqueur != -1) {
             printf("Mode de scrutin : Condorcet Schulze , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         }
-
+        
+        printf("Mode de scrutin : Condorcet Paires , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[condorcetPaires(matricePaires->tab,fichierLog)]);
+        
         // MINIMAX SI IL N'EXISTE PAS DE VAINQUEUR DE CONDORCET
-        vainqueur = condorcet(matricePoids, fichierLog);
+        vainqueur = condorcet(matricePoids->tab, fichierLog);
+        
         if(vainqueur == -1){
-            vainqueur = condorcetMinimax(matricePoids, fichierLog, NB_DUELS);
+            vainqueur = condorcetMinimax(matricePoids->tab, fichierLog, NB_DUELS);
             printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
-
+            
         }else{
             printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+            
         }
-        
     }
-
+    
     // Méthode de vote : Application de toutes les méthodes si -m all (applicable si -d est utilisé)
     if (methode[6] != -1 && d_utilise) {
-        int vainqueur = condorcetSchulze(matricePoids, fichierLog, NB_DUELS);
+        // MINIMAX SI IL N'EXISTE PAS DE VAINQUEUR DE CONDORCET
+        int vainqueur = condorcet(matricePoids->tab, fichierLog);
+        if(vainqueur != -1){
+            printf("Mode de scrutin : Condorcet , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+        }else{
+            vainqueur = condorcetMinimax(matricePoids->tab, fichierLog, NB_DUELS);
+            printf("Il n'existe pas de vainqueur de condorcet avec la méthode de scrutin simple.\n");
+            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
+        }
+        vainqueur = condorcetSchulze(matricePoids->tab, fichierLog, NB_DUELS);
         if (vainqueur != -1) {
             printf("Mode de scrutin : Condorcet Schulze , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
         }
+
+        printf("Mode de scrutin : Condorcet Paires , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[condorcetPaires(matrice->tab,fichierLog)]);
         
-        // MINIMAX SI IL N'EXISTE PAS DE VAINQUEUR DE CONDORCET
-        vainqueur = condorcet(matricePoids, fichierLog);
-        if(vainqueur == -1){
-            vainqueur = condorcetMinimax(matricePoids, fichierLog, NB_DUELS);
-            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
-        }else{
-            printf("Mode de scrutin : Condorcet minimax , %d candidats, %d votants, vainqueur = %s\n", NB_CANDIDAT, NB_VOTANTS, burgers[vainqueur]);
-        }
+        
     }
 
 
@@ -331,13 +352,19 @@ int main(int argc, char* argv[]) {
      * Libère la mémoire allouée pour les différentes structures de données
      * à la fin de l'exécution du programme.
      */
-    libererMatrice(matrice, MAX_VOTES_E);
+
+    libererMatrice(matrice, NB_VOTANTS);
     free(matrice);
 
-    for (int i = 0; i < NB_CANDIDAT; i++) {
-        free(matricePoids[i]);
-    }
+    libererMatrice(matricePoids,NB_CANDIDAT);
     free(matricePoids);
+
+    if (i_utilise)
+    {
+        libererMatrice(matricePaires,NB_VOTANTS);
+        free(matricePaires);
+    }
+    
 
     for (int i = 0; i < MAX_VOTES_E; i++) {
         free(v_elect[i]);
@@ -345,6 +372,7 @@ int main(int argc, char* argv[]) {
 
     free(v_elect);
     free(nb_elect);
+    
     printf("\nFin d'éxecution du programme\n\n");
     return 0;
 }

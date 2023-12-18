@@ -1,8 +1,7 @@
 /**
- * @file lecture_csv.c
+ * @file lecture_csv.h
  * @author Gineste Jarod
  * @brief .h du fichier lecture_csv.c qui gère lecture de fichiers CSV pour extraire et structurer les données
- * @version 0.1
  * @date 2023-10-28
  */
 

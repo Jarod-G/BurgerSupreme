@@ -1,3 +1,10 @@
+/**
+ * @file struct_data.c
+ * @author Gineste Jarod
+ * @brief Définition de données structurées et fonctions associées
+ * @date 2023-11-28
+ * 
+ */
 #include "struct_data.h"
 #include <stdio.h>
 
@@ -15,10 +22,10 @@ const char *burgers[10] = {"Burger Black Pepper", "Burger Sud-Ouest", "Thai Burg
  */
 void initialiserMatrice(matriceTab *matrice, int lignes, int colonnes) {
     // Initialiser le tableau d'entiers
-    matrice->tab = malloc(colonnes * sizeof(int *));
-    for (int i = 0; i < colonnes; i++) {
-        matrice->tab[i] = malloc(lignes * sizeof(int));
-        for (int j = 0; j < lignes; j++) {
+    matrice->tab = malloc(lignes * sizeof(int *));
+    for (int i = 0; i < lignes; i++) {
+        matrice->tab[i] = malloc(colonnes * sizeof(int));
+        for (int j = 0; j < colonnes; j++) {
             matrice->tab[i][j] = 0;
         }
     }

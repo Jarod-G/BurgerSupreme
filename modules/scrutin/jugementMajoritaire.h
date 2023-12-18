@@ -14,8 +14,7 @@
  * @brief Fonction principale pour le jugement majoritaire
  * @param votes Tableau des votes des électeurs
  * @param nbVotants Nombre total d'électeurs
- * @param nbCandidat Nombre total de candidats
- * @param fichierLog Nom du fichier de sortie
+ * @param fichierLog Fichier de log.
  */
 const char* jugementMajoritaire(voteElecteur **votes, int nbVotants, const char *fichierLog);
 

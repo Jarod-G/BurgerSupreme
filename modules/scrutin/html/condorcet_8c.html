@@ -79,7 +79,7 @@ $(function() {
 <p>Implémentation des fonctions pour tester différentes méthodes Condorcet.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="condorcet_8h_source.html">condorcet.h</a>&quot;</code><br />
-<code>#include &quot;lecture_csv.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="lecture__csv_8h_source.html">lecture_csv.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
@@ -93,9 +93,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a03459c8264ca36844e56ca5b7666f54f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8c.html#a03459c8264ca36844e56ca5b7666f54f">duelsCalculsArcsMatrice</a> (int **<a class="el" href="structmatriceTab.html">matriceTab</a>, int maxElecteurs, int **duelsMatrice)</td></tr>
 <tr class="memdesc:a03459c8264ca36844e56ca5b7666f54f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule les résultats des duels entre les candidats.  <br /></td></tr>
 <tr class="separator:a03459c8264ca36844e56ca5b7666f54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6f4c631be49cae6c56170bb81cb6313"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8c.html#ac6f4c631be49cae6c56170bb81cb6313">duelsCalculsArcsPaires</a> (<a class="el" href="structvoteElecteur.html">voteElecteur</a> *v_elect[], int maxElecteurs, int **duelsMatrice)</td></tr>
-<tr class="memdesc:ac6f4c631be49cae6c56170bb81cb6313"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule les résultats des duels entre les candidats.  <br /></td></tr>
-<tr class="separator:ac6f4c631be49cae6c56170bb81cb6313"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6e9e6875475067a56289d961129e8e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8c.html#af6e9e6875475067a56289d961129e8e0">condorcet</a> (int **duelsMatrice, const char *fichierLog)</td></tr>
 <tr class="memdesc:af6e9e6875475067a56289d961129e8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique la méthode Condorcet pour déterminer le gagnant du vote.  <br /></td></tr>
 <tr class="separator:af6e9e6875475067a56289d961129e8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,12 +100,10 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implémentation des fonctions pour tester différentes méthodes Condorcet. </p>
 <p>Implémentation des fonctions liées à la méthode de Condorcet minimax.</p>
-<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-12-14 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Gineste Jarod</dd>
 <dd>
 Handwerk Hippolyte </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2023-12-14 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="af6e9e6875475067a56289d961129e8e0" name="af6e9e6875475067a56289d961129e8e0"></a>
@@ -141,6 +136,7 @@ Handwerk Hippolyte </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">duelsMatrice</td><td>Matrice des résultats des duels entre les candidats. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
   </table>
   </dd>
 </dl>
@@ -229,50 +225,6 @@ Handwerk Hippolyte </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="structmatriceTab.html" title="Structure représentant une matrice d&#39;entiers avec des noms de candidats.">matriceTab</a></td><td>Matrice de votes des électeurs. </td></tr>
-    <tr><td class="paramname">maxElecteurs</td><td>Nombre maximum d'électeurs. </td></tr>
-    <tr><td class="paramname">duelsMatrice</td><td>Matrice pour stocker les résultats des duels entre les candidats. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ac6f4c631be49cae6c56170bb81cb6313" name="ac6f4c631be49cae6c56170bb81cb6313"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6f4c631be49cae6c56170bb81cb6313">&#9670;&#160;</a></span>duelsCalculsArcsPaires()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void duelsCalculsArcsPaires </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structvoteElecteur.html">voteElecteur</a> *&#160;</td>
-          <td class="paramname"><em>v_elect</em>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>maxElecteurs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int **&#160;</td>
-          <td class="paramname"><em>duelsMatrice</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Calcule les résultats des duels entre les candidats. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">v_elect</td><td>Tableau de structures <a class="el" href="structvoteElecteur.html" title="Structure représentant les données CSV d&#39;un fichier de bulletins de vote.">voteElecteur</a> représentant les votes de chaque électeur. </td></tr>
     <tr><td class="paramname">maxElecteurs</td><td>Nombre maximum d'électeurs. </td></tr>
     <tr><td class="paramname">duelsMatrice</td><td>Matrice pour stocker les résultats des duels entre les candidats. </td></tr>
   </table>

@@ -2,7 +2,6 @@
  * @file lecture_csv.c
  * @author Gineste Jarod
  * @brief Fonctions de lecture de fichiers CSV pour extraire et structurer les données
- * @version 0.1
  * @date 2023-10-28
  */
 

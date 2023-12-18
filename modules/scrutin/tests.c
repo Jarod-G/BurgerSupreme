@@ -137,11 +137,11 @@ void testCondorcetSchulze(int **duelsMatrice, const char *fichierLog, int NB_DUE
 	printf("............................................\n");
 }
 
-void testCondorcetPaires(int grapheDuels[NB_CANDIDAT][NB_CANDIDAT], const char *fichierLog, int resultatAttendu){
+void testCondorcetPaires(int **grapheDuels, const char *fichierLog, int resultatAttendu){
 	printf("............................................\n");
 	printf("Début du test du vainqueur de Condorcet avec la méthode Paires\n");
 	
-	int resultat = trouverGagnantCondorcetPaires(grapheDuels);
+	int resultat = condorcetPaires(grapheDuels,fichierLog);
 	if(resultat == resultatAttendu ){
 		printf("Test Condorcet Paires OK \n");
 	}
@@ -153,29 +153,13 @@ void testCondorcetPaires(int grapheDuels[NB_CANDIDAT][NB_CANDIDAT], const char *
 
 int main(){
 	char * fichierLog = "log.txt";	
-	char* fichierBallots = "jugement.csv";
-	
-	int **matricePoids = malloc(NB_CANDIDAT * sizeof(int *));
-    	int **matriceArcsP = malloc(NB_CANDIDAT * sizeof(int *));
-    	
-    	int NB_DUELS = NB_CANDIDAT - 1;
-    	
-
-	for (int i = 0; i < NB_CANDIDAT; i++) {
-		matricePoids[i] = malloc(NB_DUELS * sizeof(int));
-		for (int j = 0; j < NB_DUELS; j++) {
-		    matricePoids[i][j] = 0;
-		}
-		matriceArcsP[i] = malloc(NB_CANDIDAT * sizeof(int));
-		for (int j = 0; j < NB_CANDIDAT; j++) {
-		    matriceArcsP[i][j] = 0;
-		}
-	}
+	char* fichierBallots = "data_csv/jugement.csv";
 	
 	/*------------------FICHIER BALLOTS TESTS------------------*/
 	voteElecteur **v_elect = malloc(MAX_VOTES_E * sizeof(voteElecteur));
 	nbElecteurs *nb_elect = malloc(sizeof(nbElecteurs));
 	matriceTab* matrice = malloc(sizeof(matriceTab));
+	matriceTab* matricePoids = malloc(sizeof(matriceTab));
 
 	lireFichierCSV_vote(fichierBallots, v_elect, nb_elect);	
 	
@@ -191,29 +175,32 @@ int main(){
 	/*------------------MATRICE WIKI TEST------------------*/
 
 	initialiserMatrice(matrice, MAX_VOTES_E, MAX_CANDIDATS);
-	lireMatriceCSV("../../data_tests/wiki_paires.csv",matrice);
+	initialiserMatrice(matricePoids, MAX_VOTES_E, MAX_CANDIDATS);
+
+	lireMatriceCSV("data_csv/wiki_paires.csv",matrice);
 	
-	duelsCalculsArcsMatrice(matrice->tab, nb_elect->nb_electeur, matricePoids);
+	duelsCalculsArcsMatrice(matrice->tab, nb_elect->nb_electeur, matricePoids->tab);
 	
-	testCondorcet(matricePoids, fichierLog, -1);
+	testCondorcet(matricePoids->tab, fichierLog, -1);
 	printf("\n\n");
 	
-	testCondorcetMinimax(matricePoids, fichierLog, 0, NB_CANDIDAT);
+	testCondorcetMinimax(matricePoids->tab, fichierLog, 0, NB_CANDIDAT);
 	printf("\n\n");
 	
-	testCondorcetSchulze(matricePoids, fichierLog, NB_CANDIDAT,4);
+	testCondorcetSchulze(matricePoids->tab, fichierLog, NB_CANDIDAT,4);
+	printf("\n\n");
+
+	testCondorcetPaires(matrice->tab, fichierLog, 0);
 	printf("\n\n");
 	
+	for (int i = 0; i < MAX_VOTES_E; i++) {
+    	free(v_elect[i]);
+	}
 	free(v_elect);
 	free(nb_elect);
 	
-	for (int i = 0; i < NB_CANDIDAT; i++) {
-	free(matricePoids[i]);
-	free(matriceArcsP[i]);
-}
+	libererMatrice(matrice,MAX_VOTES_E);
+	libererMatrice(matricePoids,MAX_VOTES_E);
 
-	free(matricePoids);
-	free(matriceArcsP);
-	
 	return 0;
  }

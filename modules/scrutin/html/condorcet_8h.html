@@ -87,9 +87,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a71f4628c63be8228f1fad938a3d7ce11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#a71f4628c63be8228f1fad938a3d7ce11">duelsCalculsArcs</a> (<a class="el" href="structvoteElecteur.html">voteElecteur</a> *v_elect[], int maxElecteurs, int **duelsMatrice)</td></tr>
 <tr class="memdesc:a71f4628c63be8228f1fad938a3d7ce11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule les résultats des duels entre les candidats.  <br /></td></tr>
 <tr class="separator:a71f4628c63be8228f1fad938a3d7ce11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6f4c631be49cae6c56170bb81cb6313"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#ac6f4c631be49cae6c56170bb81cb6313">duelsCalculsArcsPaires</a> (<a class="el" href="structvoteElecteur.html">voteElecteur</a> *v_elect[], int maxElecteurs, int **duelsMatrice)</td></tr>
-<tr class="memdesc:ac6f4c631be49cae6c56170bb81cb6313"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule les résultats des duels entre les candidats.  <br /></td></tr>
-<tr class="separator:ac6f4c631be49cae6c56170bb81cb6313"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f567e8da571fc74138f651890edf2f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#a2f567e8da571fc74138f651890edf2f9">duelsCalculsArcsMatrice</a> (int **matrice, int maxElecteurs, int **duelsMatrice)</td></tr>
 <tr class="memdesc:a2f567e8da571fc74138f651890edf2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcule les duels et les arcs pondérés à partir d'une matrice de votes.  <br /></td></tr>
 <tr class="separator:a2f567e8da571fc74138f651890edf2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -99,15 +96,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a2d5037c22b6ea235b0ddfe53ba608db4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#a2d5037c22b6ea235b0ddfe53ba608db4">condorcetSchulze</a> (int **duelsMatrice, const char *fichierLog, int NB_DUELS)</td></tr>
 <tr class="memdesc:a2d5037c22b6ea235b0ddfe53ba608db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique la méthode Condorcet Schulze pour déterminer le gagnant du vote.  <br /></td></tr>
 <tr class="separator:a2d5037c22b6ea235b0ddfe53ba608db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a973f6c544ecb131166d7a6bc555493e9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#a973f6c544ecb131166d7a6bc555493e9">condorcetMinimax</a> (int **duelsMatrice, const char *fichierLog)</td></tr>
-<tr class="memdesc:a973f6c544ecb131166d7a6bc555493e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique la méthode Condorcet Minimax pour déterminer le gagnant du vote.  <br /></td></tr>
-<tr class="separator:a973f6c544ecb131166d7a6bc555493e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe787f51f5b821dde718655a894c0a87"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#afe787f51f5b821dde718655a894c0a87">trouverGagnantCondorcetPaires</a> (int grapheDuels[NB_CANDIDAT][NB_CANDIDAT])</td></tr>
-<tr class="memdesc:afe787f51f5b821dde718655a894c0a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trouve le gagnant Condorcet Paires à partir d'une matrice de duels.  <br /></td></tr>
-<tr class="separator:afe787f51f5b821dde718655a894c0a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4b44cd08403c616186a4b79041b476e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#af4b44cd08403c616186a4b79041b476e">creerGrapheDuels</a> (int scores[NB_CANDIDAT][NB_CANDIDAT], int grapheDuels[NB_CANDIDAT][NB_CANDIDAT])</td></tr>
-<tr class="memdesc:af4b44cd08403c616186a4b79041b476e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée un graphe des duels à partir des scores des candidats.  <br /></td></tr>
-<tr class="separator:af4b44cd08403c616186a4b79041b476e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1371985e7748306eb84bd096fb8b244a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#a1371985e7748306eb84bd096fb8b244a">condorcetMinimax</a> (int **duelsMatrice, const char *fichierLog, int NB_DUELS)</td></tr>
+<tr class="memdesc:a1371985e7748306eb84bd096fb8b244a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique la méthode Condorcet Minimax pour déterminer le gagnant du vote.  <br /></td></tr>
+<tr class="separator:a1371985e7748306eb84bd096fb8b244a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc1d3b488ee921ebc113e5dd9da11eb3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="condorcet_8h.html#abc1d3b488ee921ebc113e5dd9da11eb3">condorcetPaires</a> (int **matrice, const char *fichier_log)</td></tr>
+<tr class="memdesc:abc1d3b488ee921ebc113e5dd9da11eb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trouve le gagnant selon la méthode de Condorcet avec résolution du paradoxe (fonction d'interface).  <br /></td></tr>
+<tr class="separator:abc1d3b488ee921ebc113e5dd9da11eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Définition des fonctions liées à la méthode de Condorcet et ses variantes. </p>
@@ -144,6 +138,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">duelsMatrice</td><td>Matrice des résultats des duels entre les candidats. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
   </table>
   </dd>
 </dl>
@@ -151,6 +146,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">duelsMatrice</td><td>Matrice des résultats des duels entre les candidats. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
   </table>
   </dd>
 </dl>
@@ -158,8 +154,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a973f6c544ecb131166d7a6bc555493e9" name="a973f6c544ecb131166d7a6bc555493e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a973f6c544ecb131166d7a6bc555493e9">&#9670;&#160;</a></span>condorcetMinimax()</h2>
+<a id="a1371985e7748306eb84bd096fb8b244a" name="a1371985e7748306eb84bd096fb8b244a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1371985e7748306eb84bd096fb8b244a">&#9670;&#160;</a></span>condorcetMinimax()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,7 +170,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>fichierLog</em>&#160;</td>
+          <td class="paramname"><em>fichierLog</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>NB_DUELS</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -188,6 +190,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">duelsMatrice</td><td>Matrice des résultats des duels entre les candidats. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
   </table>
   </dd>
 </dl>
@@ -197,10 +200,50 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">duelsMatrice</td><td>La matrice des résultats des duels. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
+    <tr><td class="paramname">NB_DUELS</td><td>Le nombre de duels. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>L'indice du vainqueur. </dd></dl>
+
+</div>
+</div>
+<a id="abc1d3b488ee921ebc113e5dd9da11eb3" name="abc1d3b488ee921ebc113e5dd9da11eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc1d3b488ee921ebc113e5dd9da11eb3">&#9670;&#160;</a></span>condorcetPaires()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int condorcetPaires </td>
+          <td>(</td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>matrice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fichier_log</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trouve le gagnant selon la méthode de Condorcet avec résolution du paradoxe (fonction d'interface). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrice</td><td>Matrice des scores des candidats. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Identifiant du candidat gagnant. </dd></dl>
 
 </div>
 </div>
@@ -240,6 +283,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">duelsMatrice</td><td>Matrice des résultats des duels entre les candidats. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
   </table>
   </dd>
 </dl>
@@ -248,49 +292,12 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">duelsMatrice</td><td>Matrice des résultats des duels entre les candidats. </td></tr>
-    <tr><td class="paramname">fichierLog</td><td>Nom du fichier de journalisation. </td></tr>
+    <tr><td class="paramname">fichierLog</td><td>Fichier de log. </td></tr>
     <tr><td class="paramname">NB_DUELS</td><td>Nombre total de duels. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>l'indice du gagnant s'il y a un gagnant de Schulze, sinon -1. </dd></dl>
-
-</div>
-</div>
-<a id="af4b44cd08403c616186a4b79041b476e" name="af4b44cd08403c616186a4b79041b476e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4b44cd08403c616186a4b79041b476e">&#9670;&#160;</a></span>creerGrapheDuels()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void creerGrapheDuels </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>scores</em>[NB_CANDIDAT][NB_CANDIDAT], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>grapheDuels</em>[NB_CANDIDAT][NB_CANDIDAT]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Crée un graphe des duels à partir des scores des candidats. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">scores</td><td>Tableau des scores des duels entre les candidats. </td></tr>
-    <tr><td class="paramname">grapheDuels</td><td>Matrice pour stocker le graphe des duels. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -388,77 +395,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="ac6f4c631be49cae6c56170bb81cb6313" name="ac6f4c631be49cae6c56170bb81cb6313"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6f4c631be49cae6c56170bb81cb6313">&#9670;&#160;</a></span>duelsCalculsArcsPaires()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void duelsCalculsArcsPaires </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structvoteElecteur.html">voteElecteur</a> *&#160;</td>
-          <td class="paramname"><em>v_elect</em>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>maxElecteurs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int **&#160;</td>
-          <td class="paramname"><em>duelsMatrice</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Calcule les résultats des duels entre les candidats. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">v_elect</td><td>Tableau de structures <a class="el" href="structvoteElecteur.html" title="Structure représentant les données CSV d&#39;un fichier de bulletins de vote.">voteElecteur</a> représentant les votes de chaque électeur. </td></tr>
-    <tr><td class="paramname">maxElecteurs</td><td>Nombre maximum d'électeurs. </td></tr>
-    <tr><td class="paramname">duelsMatrice</td><td>Matrice pour stocker les résultats des duels entre les candidats. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="afe787f51f5b821dde718655a894c0a87" name="afe787f51f5b821dde718655a894c0a87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe787f51f5b821dde718655a894c0a87">&#9670;&#160;</a></span>trouverGagnantCondorcetPaires()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int trouverGagnantCondorcetPaires </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>grapheDuels</em>[NB_CANDIDAT][NB_CANDIDAT]</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Trouve le gagnant Condorcet Paires à partir d'une matrice de duels. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">grapheDuels</td><td>Matrice représentant le graphe des duels entre les candidats. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>l'indice du gagnant Condorcet Paires ou -1 s'il n'y a pas de gagnant. </dd></dl>
 
 </div>
 </div>
