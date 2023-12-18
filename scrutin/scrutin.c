@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
      */
 
     if (argc < 5) {
-        printf("Usage : %s -i <fichier_ballot.csv> -d[option] <fichier_ballot.csv> -o[option] <nom_fichier_log> -m <methode_de_vote> [all,uni1,uni2,...]", argv[0]);
+        printf("Usage : %s -i <fichier_ballot.csv> -d[option] <matrice.csv> -o[option] <nom_fichier_log> -m <methode_de_vote> [all,uni1,uni2,...]\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
